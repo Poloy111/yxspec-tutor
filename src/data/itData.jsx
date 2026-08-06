@@ -9,9 +9,9 @@ const itChapter = {
   overview: {
     eyebrow: '/yxspec:swe-integration-verify · SWE.5 · 集成验证',
     oneLiner:
-      '模块组装后的集成测试——基于架构分层 + 接口拓扑推导 11 个测试分组（L1×6 + L2×3 + L3×2），56 用例（iface/sigflow/fault/e2e 四类）全部通过。',
+      '模块组装后的集成测试——基于架构分层 + 接口拓扑推导 11 个测试分组（L1×6 + L2×3 + L3×2），56 用例（iface/sigflow/fault/e2e 四类）全部通过。与静态分析 / 单元验证 / PC 验证并行开展，四路验证互为证据。',
     analogy:
-      '把 swe-integration-verify 想象成「部件组装后的整机质检」：零件级（单元）测完，开始组装——按架构分层（L1 底层→L2 中间→L3 应用）把模块组装起来测「接口对不对、信号流不流、故障怎么走、端到端通不通」。11 个组装组 56 用例全过，4.49 秒。',
+      '把 swe-integration-verify 想象成「部件组装后的整机质检」：编码完成即与单元验证 / 静态分析 / PC 验证并行开工（互不等待）——按架构分层（L1 底层→L2 中间→L3 应用）把模块组装起来测「接口对不对、信号流不流、故障怎么走、端到端通不通」。11 个组装组 56 用例全过，4.49 秒。',
     memoryLine: '记住：<Hl>integration-verify = 模块组装后的集成测试</Hl>——11 组 56 用例全 PASS。',
     purpose: {
       oneLiner:
@@ -163,8 +163,9 @@ const itChapter = {
         color: 'cyan',
         from: { id: 'it', cmd: '/yxspec:swe-integration-verify', sub: 'SWE.5 · 集成验证', desc: '模块组装质检' },
         tos: [
-          { id: 'up-ut', cmd: 'swe-unit-verify', edge: '框架复用 + 零件全绿', edgeDesc: '组装前提', desc: '上游：单元验证零件全绿，框架复用。' },
-          { id: 'down-vpc', cmd: 'verify-pc', edge: '集成结论', edgeDesc: '整机验证参考', desc: '旁支：整机验证参考集成结果。', dashed: true },
+          { id: 'up-code', cmd: 'swe-coding-do', edge: '编码完成源码', edgeDesc: '验证对象', desc: '上游：验证对象是编码完成的源码；与单元验证/静态分析/PC 验证并行执行，不以单元验证完成为前置。' },
+          { id: 'up-arch', cmd: 'swe-arch', edge: '架构 + 模块拓扑', edgeDesc: '分组依据', desc: '上游：集成分组按架构的模块依赖拓扑推导（it-grouping-proposal）。', dashed: true },
+          { id: 'down-vpc', cmd: 'verify-pc', edge: '集成结论', edgeDesc: '整机验证参考', desc: '旁支：PC 整机验证参考集成结果，两者互为证据。', dashed: true },
         ],
       },
     ],

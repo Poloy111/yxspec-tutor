@@ -10,13 +10,13 @@ const ifChapter = {
   overview: {
     eyebrow: '/yxspec:swe-arch-if-v2 · SWE.3 · 软件接口规范',
     oneLiner:
-      '给 19 个需要编码的模块（evolve 16 + new 3）定义「对外门面」——每个模块的 public API（API001~1900）、模块间的 37 条接口拓扑、91 个共享类型，全部登记进契约注册表。',
+      '给 19 个需要编码的模块（evolve 16 + new 3）定义「对外门面」——每个模块的 public API（API001~1900）、模块间的 37 条接口拓扑、96 个共享类型，全部登记进契约注册表。',
     analogy:
       '把 swe-arch-if 想象成「小区物业的接口规范书」：swe-arch 定了 57 栋楼的布局（模块分工），swe-arch-if 给每栋楼定「门口长什么样」——对外公开几个门（public API）、门牌号怎么编（api-id）、楼与楼之间走哪条路（接口拓扑）、公共设施怎么共用（共享类型）。retain 的老楼（38 个）不重新定义，索引里引用旧图纸就行。',
-    memoryLine: '记住：<Hl>swe-arch-if = 给 19 个模块定义「对外门面」</Hl>——public API + 37 边拓扑 + 91 共享类型，登记进 registry。',
+    memoryLine: '记住：<Hl>swe-arch-if = 给 19 个模块定义「对外门面」</Hl>——public API + 37 边拓扑 + 96 共享类型，登记进 registry。',
     purpose: {
       oneLiner:
-        '按 4 个 skill 串联（plan → ifmod → index-types → registry）生成接口规范：19 个 IF-MOD（含 API001~1900 编号）、IF-INDEX（五层索引 + 拓扑 37 边）、sw-shared-types（91 类型）、sw-contract-registry（validation.status=pass）。',
+        '按 4 个 skill 串联（plan → ifmod → index-types → registry）生成接口规范：19 个 IF-MOD（含 API001~1900 编号）、IF-INDEX（五层索引 + 拓扑 37 边）、sw-shared-types（96 类型）、sw-contract-registry（validation.status=pass）。',
       input: {
         title: '3 类输入',
         items: [
@@ -28,16 +28,16 @@ const ifChapter = {
       },
       processTitle: '4 阶段串联（门禁把关）',
       process: [
-        '① plan：19 模块 brief 生成 + 分批 spawn IF-Plan Worker（≤5）+ plan_shard_merge → sw-if-plan.json（19 模块 / 294 primary SWR）',
+        '① plan：19 模块 brief 生成 + 分批 spawn IF-Plan Worker（≤5）+ plan_shard_merge → sw-if-plan.json（19 模块 / 294 primary SWR（SWR 全集 420 条））',
         '② ifmod：delta=changed 集为空 → 不 spawn Worker，模板化生成 19 个说明型 IF-MOD（不生造 API）',
         '③ index-types：api-id 规划（API001~1900）+ 机械聚合 IF-INDEX + AI 补拓扑 + 共享类型分类 → IG1~IG7 校验',
         '④ registry：5 源门控 + contract-registry-build + validation 三项 + integrity-check',
       ],
       outputsTitle: '4 样（编码契约的接口层）',
       outputs: [
-        { name: 'sw-if-plan.json', what: '接口规划（19 模块 / 294 primary SWR）', consumer: '编码计划准备阶段' },
+        { name: 'sw-if-plan.json', what: '接口规划（19 模块 / 294 primary SWR（SWR 全集 420 条））', consumer: '编码计划准备阶段' },
         { name: 'sw-if-*-if-mod-*.md ×19', what: '各模块 IF-MOD（说明型，public API 描述）', consumer: '编码 Worker 的接口依据' },
-        { name: 'sw-if-*-index.md + sw-shared-types.md', what: '接口索引（五层 + 拓扑 37 边）+ 共享类型 91 个', consumer: '接口检索 + 公共类型定义' },
+        { name: 'sw-if-*-index.md + sw-shared-types.md', what: '接口索引（五层 + 拓扑 37 边）+ 共享类型 96 个', consumer: '接口检索 + 公共类型定义' },
         { name: 'sw-contract-registry-*.json', what: '契约注册表（16 键：module_catalog/swr_ownership/dsc/msgbus/interface 25 模块/shared_type）', consumer: 'swe-coding-plan 的门禁输入' },
       ],
       value: [
@@ -70,11 +70,11 @@ const ifChapter = {
       stats: [
         { num: '1h 35m', label: '主会话耗时', desc: '14:56 → 16:34（前序会话中断接续）', kind: 'cyan' },
         { num: '19', label: '个模块 IF-MOD', desc: 'evolve 16 + new 3', kind: 'cyan' },
-        { num: '294', label: '条 primary SWR', desc: '接口规划依据', kind: 'cyan' },
+        { num: '294', label: '条 primary SWR', desc: '接口规划依据（SWR 全集 420）', kind: 'cyan' },
         { num: '37', label: '条接口拓扑', desc: 'INDEX §1.3（模块间边）', kind: 'cyan' },
         { num: 'pass', label: 'registry 校验', desc: '16 键 0 errors', kind: 'green' },
       ],
-      memoryLine: '记住这 4 个数字：<Hl>1h35m、19 模块、37 边拓扑、91 共享类型</Hl>。答辩时说「delta=none 模板化不生造 API，registry pass」就是一句话结论。',
+      memoryLine: '记住这 4 个数字：<Hl>1h35m、19 模块、37 边拓扑、96 共享类型</Hl>。答辩时说「delta=none 模板化不生造 API，registry pass」就是一句话结论。',
     },
     downstream: ['registry → swe-coding-plan', 'IF-MOD → 编码 Worker', 'shared-types → 公共定义'],
     downstreamLine: '一句话：<Hl>SW-IF 是「编码契约的接口层」</Hl>——swe-coding-plan 的 prepare 门禁就是 registry validation.status=pass。',
@@ -90,7 +90,7 @@ const ifChapter = {
       answer: (
         <span>
           <b>swe-arch 回答「模块怎么分」</b>（57 模块 + 跨模块契约 37 依赖）；
-          <b>swe-arch-if 回答「接口长什么样」</b>（19 个 evolve+new 模块的 public API + 编号 API001~1900 + 共享类型 91 个 + 契约注册表）。
+          <b>swe-arch-if 回答「接口长什么样」</b>（19 个 evolve+new 模块的 public API + 编号 API001~1900 + 共享类型 96 个 + 契约注册表）。
           swe-arch 出「分工图」，swe-arch-if 出「门面规范」——swe-arch-if 只处理 evolve+new，retain 模块在 INDEX 引用基线。
         </span>
       ),
@@ -111,7 +111,7 @@ const ifChapter = {
     {
       id: 1, name: 'IF-LOAD', label: '契约加载 + 分片规划（1h 3m）',
       action: 'Gate Check + 19 个 evolve/new 模块 brief 生成 + 分批 spawn IF-Plan Worker（≤5）+ plan_shard_merge',
-      post: 'sw-if-plan.json（19 模块 / 294 primary SWR / 0 new 决策）', edge: '接口规划稿',
+      post: 'sw-if-plan.json（19 模块 / 294 primary SWR（SWR 全集 420 条） / 0 new 决策）', edge: '接口规划稿',
       why: '先规划再定义，分片并行提速度',
       badges: [{ kind: 'cyan', text: '并发 ≤5' }],
     },
@@ -125,7 +125,7 @@ const ifChapter = {
     {
       id: 3, name: 'IF-INDEX', label: 'IF-INDEX + 公共类型（9m 59s）',
       action: 'api-id-plan（API001~1900）+ 机械聚合 + AI 补 §1.3 拓扑 + shared-types 分类/渲染 + IG1~IG7',
-      post: 'IF-INDEX + sw-shared-types.md（91 类型）', edge: '索引 + 类型',
+      post: 'IF-INDEX + sw-shared-types.md（96 类型）', edge: '索引 + 类型',
       why: '接口要能检索，公共类型要统一定义',
       badges: [{ kind: 'green', text: 'IG 通过' }],
     },
@@ -165,10 +165,10 @@ const ifChapter = {
     ],
     inputKeyline: '最关键输入是 <Hl>契约（freeze.confirmed）</Hl>——契约未冻结，接口定义无依据。',
     outputs: [
-      { name: 'sw-if-plan.json', role: '接口规划（19 模块 / 294 primary SWR）' },
+      { name: 'sw-if-plan.json', role: '接口规划（19 模块 / 294 primary SWR（SWR 全集 420 条））' },
       { name: 'sw-if-*-if-mod-*.md', role: '19 个模块 IF-MOD（说明型 public API）' },
       { name: 'sw-if-*-index.md', role: 'IF-INDEX（§1 基线/变更/拓扑 37 边 + §2 五层索引）' },
-      { name: 'sw-shared-types.md', role: '共享类型（91：14 new / 81 existing / 1 gap）' },
+      { name: 'sw-shared-types.md', role: '共享类型（96：14 new / 81 existing / 1 gap）' },
       { name: 'sw-contract-registry-*.json', role: '契约注册表（16 键 / validation.status=pass）' },
     ],
     outputKeyline: '核心输出链：<Hl>plan → IF-MOD ×19 → INDEX + shared-types → registry</Hl>，一步一个文件全部可验证。',
@@ -180,7 +180,7 @@ const ifChapter = {
         tos: [
           { id: 'up-arch', cmd: 'swe-arch-v2', edge: '契约 + 架构', edgeDesc: 'freeze.confirmed', desc: '上游：跨模块契约（37 依赖）已冻结，是接口定义的依据。' },
           { id: 'down-plan', cmd: 'swe-coding-plan-v2', edge: 'registry（pass）', edgeDesc: 'prepare 硬门禁', desc: '下游：编码计划 prepare 门禁 = registry validation.status=pass。' },
-          { id: 'side-review', cmd: 'yxspec:review swe_arch', edge: '审查报告', edgeDesc: '阶段审查', desc: '审查通过后进编码计划。', dashed: true },
+          { id: 'side-review', cmd: 'review swe_arch（V1.1 补审）', edge: 'SWE.2+SWE.3 全量放行', edgeDesc: 'SW-IF 无独立 review', desc: 'SW-IF（SWE.3）无独立 review：契约已在 swe-arch-v2 冻结，接口部分随 review swe_arch V1.1（2026-07-29 17:08）补审放行，进编码计划。', dashed: true },
         ],
       },
       {
@@ -225,7 +225,7 @@ const ifChapter = {
     answer: (
       <span>
         「swe-arch-if 消费冻结后的跨模块契约（37 依赖），<b>4 阶段门禁串联</b>：plan（19 模块 294 SWR）→
-        IF-MOD ×19（delta=none 模板化生成，不生造 API）→ INDEX + shared-types（37 边拓扑 + 91 类型）→
+        IF-MOD ×19（delta=none 模板化生成，不生造 API）→ INDEX + shared-types（37 边拓扑 + 96 类型）→
         registry（16 键 validation pass），产出 sw-contract-registry 给 swe-coding-plan 当 prepare 硬门禁。」
       </span>
     ),
@@ -234,10 +234,10 @@ const ifChapter = {
   /* ---------- 3. 产物实例 ---------- */
   artifactsSub: '产物文件都在工程里真实存在，答辩时可打开验证。',
   artifacts: [
-    { name: 'sw-if-plan.json', kind: 'cyan', what: '接口规划：19 模块 / 294 primary SWR / 0 new 决策', who: 'IF-MOD 生成的输入' },
+    { name: 'sw-if-plan.json', kind: 'cyan', what: '接口规划：19 模块 / 294 primary SWR（SWR 全集 420 条） / 0 new 决策', who: 'IF-MOD 生成的输入' },
     { name: 'sw-if-*-if-mod-*.md ×19', kind: 'amber', what: '各模块 IF-MOD（说明型：既有 API + non_public 覆盖表）', who: '编码 Worker 的接口依据' },
     { name: 'sw-if-*-index.md', kind: 'amber', what: 'IF-INDEX：§1 基线/变更/拓扑 37 边 + §2 五层索引（api-id API001~1900）', who: '接口检索入口' },
-    { name: 'sw-shared-types.md', kind: 'amber', what: '共享类型：91 个（14 new / 81 existing / 1 gap）', who: '公共类型定义' },
+    { name: 'sw-shared-types.md', kind: 'amber', what: '共享类型：96 个（14 new / 81 existing / 1 gap）', who: '公共类型定义' },
     { name: 'sw-contract-registry-*.json', kind: 'green', what: '契约注册表：16 键（module_catalog/swr_ownership/dsc/msgbus/interface 25 模块/shared_type）', who: 'swe-coding-plan 硬门禁' },
     { name: 'task_sw_arch_if.md', kind: 'green', what: '任务台账：IF-GATE~REGISTRY', who: '门控放行 + 证据链' },
   ],

@@ -64,10 +64,10 @@ const defectFeedbackChapter = {
     whyMemory: '记住 <Hl>「按失败模式分组 + CI 回归计划」</Hl>——21 def 分 3 组。',
     instance: {
       stats: [
-        { num: '21', label: '个 def', desc: '116 用例 95 通过 21 失败', kind: 'cyan' },
+        { num: '21', label: '个 DEF 闭环', desc: 'R6 检出 21 条，R7 116/116 全通过后全部 verified', kind: 'cyan' },
         { num: '3', label: '个 fix-group', desc: 'BMS 解析/设防状态/协议逻辑', kind: 'amber' },
         { num: 'P2', label: '主流优先级', desc: 'P2-High（Major 为主）', kind: 'amber' },
-        { num: 'draft', label: '状态', desc: '待修复/复测/补证据 21', kind: 'cyan' },
+        { num: 'verified', label: '状态', desc: '21 DEF 全部 verified 闭环（REVIEW-2026-003 approved，08-05 实证）', kind: 'green' },
       ],
       memoryLine: '记住这 2 个数字：<Hl>21 def、3 个 fix-group</Hl>。答辩时说「缺陷按失败模式分组 + CI 回归计划」就是一句话结论。',
     },

@@ -1,6 +1,6 @@
 /**
  * yxspec-tutor · review 章节数据（通用章节契约结构）
- * 内容来源：yxspec/.claude/commands/yxspec/review.md + 各阶段 specs 目录下真实 review 报告（8+ 份）
+ * 内容来源：yxspec/.claude/commands/yxspec/review.md + 各阶段 specs 目录下真实 review 报告（13 个有 review 阶段 / 15 份 signoff）
  * 真实运行：2026-07-28~30（sys_elicitation→sys_analysis→sys_arch→swe_analysis→swe_arch→coding_plan→coding→sqt_*）
  */
 
@@ -9,10 +9,10 @@ const reviewChapter = {
   overview: {
     eyebrow: '/yxspec:review <stage> · 阶段审查',
     oneLiner:
-      '对指定阶段规格书按阶段专属检查单逐项审查（pass/deviation/na）→ 生成审查报告 + SIGNOFF 人工表单 → 人工确认签名后放行下游。本工程 8+ 份真实审查报告（sys_arch 25 pass/1 Minor → approved 双签）。',
+      '对指定阶段规格书按阶段专属检查单逐项审查（pass/deviation/na）→ 生成审查报告 + SIGNOFF 人工表单 → 人工确认签名后放行下游。本工程 13 个有 review 阶段全部 approved（15 份 signoff；sqt-defect-feedback 含 3 轮迭代）。',
     analogy:
       '把 review 想象成「出厂质检 + 签字放行」：质检员（AI）拿着检查单（review-{stage}.yaml）逐项检验产品（规格书），合格标 pass、有问题标 deviation 并给修正建议，最后开一张签字单（SIGNOFF）——技术负责人和质量负责人签字后产品才能发货（放行下游）。AI 不能替人签字。',
-    memoryLine: '记住：<Hl>review = AI 预审 + 人工双签放行</Hl>——8+ 份真实审查报告。',
+    memoryLine: '记住：<Hl>review = AI 预审 + 人工双签放行</Hl>——13 个阶段 / 15 份 signoff 全 approved。',
     purpose: {
       oneLiner:
         '两阶段：阶段 A（AI 预审）逐项审查 → verdict 自动推导（approved/conditional/rejected）+ 生成 SIGNOFF 表单；阶段 B（人工确认）校验签名完整与逻辑一致 → 同步回 REVIEW 报告 → 放行判定（approved / conditional+tech_lead 双签）。',
@@ -37,7 +37,7 @@ const reviewChapter = {
         { name: 'task_review_{stage}.md', what: '本阶段任务文件', consumer: '门控 + 追溯' },
       ],
       value: [
-        '8+ 份真实审查报告——每个阶段都有放行证据',
+        '13 个阶段 15 份 signoff 全 approved——每个阶段都有放行证据',
         'verdict 自动推导不被人工覆盖——Major=0 才可能放行',
         'AI 不填签名——签名不可伪造，人工双签',
       ],
@@ -64,12 +64,12 @@ const reviewChapter = {
     whyMemory: '记住 <Hl>「AI 预审 + 人工双签」</Hl>——verdict 自动推导不被覆盖。',
     instance: {
       stats: [
-        { num: '8+', label: '份审查报告', desc: 'elicitation→analysis→arch→coding→sqt', kind: 'cyan' },
+        { num: '13', label: '个 review 阶段', desc: '15 份 signoff 全 approved', kind: 'green' },
         { num: '26', label: '项 sys_arch 检查', desc: '25 pass + 1 Minor', kind: 'cyan' },
         { num: '2', label: '阶段 A/B', desc: 'AI 预审 + 人工确认', kind: 'blue' },
         { num: 'approved', label: '终审结论', desc: 'DEV 接受 + 双签', kind: 'green' },
       ],
-      memoryLine: '记住这 2 个数字：<Hl>8+ 份报告、verdict 自动推导</Hl>。答辩时说「每个阶段审查通过才放行，双签 approved」就是一句话结论。',
+      memoryLine: '记住这 2 个数字：<Hl>13 个阶段、15 份 signoff</Hl>。答辩时说「每个阶段审查通过才放行，13 阶段全 approved」就是一句话结论。',
     },
     downstream: ['approved → 放行下游', 'conditional+双签 → 附条件放行', 'rejected → 修正重审'],
     downstreamLine: '一句话：<Hl>审查是「出厂质检 + 签字放行」</Hl>——没有签名不发货。',
@@ -210,7 +210,7 @@ const reviewChapter = {
         「review 是阶段审查：<b>阶段 A（AI 预审）</b>按 review-{'stage'}.yaml 检查单逐项审查规格书
         （pass/deviation/na，证据驱动），verdict 自动推导（approved/conditional/rejected），生成 REVIEW 报告 + SIGNOFF 人工表单；
         <b>阶段 B（人工确认）</b>校验签名完整与逻辑一致后同步回报告放行。
-        本工程 8+ 份报告（sys_arch 25 pass/1 Minor → 双签 approved）。」
+        本工程 13 阶段全 approved（15 份 signoff；SQT-TR 唯一一次 rejected→UF 闭环→approved 是门控拦截实证）。」
       </span>
     ),
   },
@@ -219,7 +219,7 @@ const reviewChapter = {
   artifactsSub: '产物文件都在工程里真实存在，答辩时可打开验证。',
   artifacts: [
     { name: 'review-sys_arch-2026-001.md', kind: 'green', what: '26 项检查 25 pass/1 Minor → approved（双签）', who: 'sys-arch 放行' },
-    { name: 'review-swe_analysis-2026-001.md', kind: 'cyan', what: 'SW-SRS 审查报告（46 项校验 49P/0F/3WARN）', who: 'SWE.1 放行' },
+    { name: 'review-swe_analysis-2026-001.md', kind: 'cyan', what: 'SW-SRS 审查报告（16 项 CHK-SWR 检查，上游 verify 52 项 49P/0F/3WARN）', who: 'SWE.1 放行' },
     { name: 'review-swe_coding-2026-001.md', kind: 'amber', what: '编码机械门禁（coding_review.py 四项）', who: 'SWE.4 放行' },
     { name: 'review-*-SIGNOFF.md', kind: 'cyan', what: '人工审查表单（偏离判定 + 双签 + 放行条件）', who: '人工填写' },
   ],

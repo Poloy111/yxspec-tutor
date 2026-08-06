@@ -10,7 +10,7 @@ const sweReqChapter = {
   overview: {
     eyebrow: '/yxspec:swe-analysis · SWE.1 · 软件需求分析（PRD 直达版）',
     oneLiner:
-      '把 PRD 的 373 条产品需求，直接分解成 420 条软件需求（SWR：FUN 356 + IF 64）——跳过系统级，PRD 直达软件需求，软件实现的最源头。',
+      '把 PRD 的 373 条产品需求，直接分解成 420 条软件需求（SWR：FUN 356 + IF 64）——跳过系统级，PRD 直达软件需求，软件实现的最源头。作为系统架构后的软件支，与硬件分析（HWE.1）并行开展。',
     analogy:
       '把 swe-analysis 想象成「软件需求翻译局」：PRD 是客户语言的需求清单，swe-analysis 用一套高度确定性的流水线（11 步，9 步脚本确定 + 2 步 AI）把每条 PRD 翻成软件团队能直接开工的 SWR——功能类（FUN）管「行为/安全/性能/资源」，接口类（IF）管「协议/报文/接口规约」。翻完有 46 项校验（V1~V35）把关。',
     memoryLine: '记住：<Hl>swe-analysis = PRD 直达软件需求（跳过系统级）</Hl>——420 条 SWR，46 项校验全 PASS。',
@@ -29,9 +29,9 @@ const sweReqChapter = {
       },
       processTitle: '11 步，9 步确定性 + 2 步 AI',
       process: [
-        '① 确定性（9 步）：task-init → gate → parse-prd → 锚点预扫 → 分片（config 驱动）→ 确认分片 → gen-briefs → merge → verify V1~V35',
-        '② AI 唯一非确定性点：Step 6 按域 spawn yxspec-swe-analysis Worker（17 域，模型 opus），把 PRD 条目分解为 SWR',
-        '③ 收尾：Step 9 finalize（git commit，74 文件）',
+        '① 确定性（9 步）：task-init → gate → parse-prd → 锚点预扫 → 分片（config 驱动）→ gen-briefs → merge → verify V1~V35 → finalize',
+        '② AI 唯一非确定性点：Step 7 按域 spawn yxspec-swe-analysis Worker（17 域，模型 opus），把 PRD 条目分解为 SWR',
+        '③ 收尾：git commit 入库（74 文件），SWFP-FINAL done',
       ],
       outputsTitle: '3 样（软件实现的最源头）',
       outputs: [
@@ -54,7 +54,7 @@ const sweReqChapter = {
     },
     rolesTitle: '谁在干活？（命令 / Agent / 脚本）',
     roles: [
-      { kind: 'blue', role: '项目经理', who: '/yxspec:swe-analysis 命令', does: '按 11 步推进，Step 4 用户确认分片，Step 8 后处置 verify 失败' },
+      { kind: 'blue', role: '项目经理', who: '/yxspec:swe-analysis 命令', does: '按 11 步推进，Step 5 用户确认分片，Step 9 后处置 verify 失败' },
       { kind: 'cyan', role: '需求分解员', who: 'yxspec-swe-analysis Worker ×17 域', does: '把 PRD 条目分解为 SWR（唯一非确定性步骤，模型 opus）' },
       { kind: 'amber', role: '流水线脚本', who: 'pipeline.py（gate/parse/anchor/shard/briefs/merge/verify）', does: '9 步 100% 确定性：解析/分片/brief/合并/46 项校验' },
     ],
@@ -88,7 +88,7 @@ const sweReqChapter = {
       question: '考官问「swe-analysis 和 sys-analysis 的分工区别？」怎么答？',
       answer: (
         <span>
-          <b>sys-analysis 是标准路径</b>（SYS-REQ → SW-SRS，374 条 SR）；
+          <b>sys-analysis 是标准路径</b>（PRD → SYS-REQ，374 条 SR，产出系统需求）；
           <b>swe-analysis 是 PRD 直达路径</b>（跳过系统级，373 条 PRD 直接分解为 420 条 SWR）。
           本项目走 PRD 直达：AI 只做「需求分解」一步（17 域并行），其余 9 步 pipeline 脚本确定性执行，verify 46 项校验全 PASS。
         </span>
@@ -356,7 +356,7 @@ const sweReqChapter = {
         rows: [
           ['<code>pipeline.py</code>', 'gate/parse/锚点/分片/brief/merge/verify（9 步）', '100% 确定性可复现'],
           ['<code>yxspec-swe-analysis ×17</code>', '把 PRD 条目分解为 SWR', '唯一非确定性步骤'],
-          ['<code>用户</code>', 'Step 4 确认分片 + Step 8 后处置 verify 失败', '人工决策点 2 处'],
+          ['<code>用户</code>', 'Step 5 确认分片 + Step 9 后处置 verify 失败', '人工决策点 2 处'],
         ],
         keyline: '「相同配置 ⇒ 相同输出」——确定性是可审计的基础，AI 只做翻译。',
       },

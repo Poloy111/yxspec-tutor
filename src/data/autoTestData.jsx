@@ -1,18 +1,18 @@
 /**
  * yxspec-tutor · sqt-auto-test 章节数据（通用章节契约结构）
  * 内容来源：yxspec/.claude/commands/yxspec/sqt-auto-test.md + project/tests/auto_test/logs/index.json
- * 真实运行：2026-08-03 ~ 08-05 多轮迭代（116 用例，通过率 88%→95%）
+ * 真实运行：2026-08-03 ~ 08-05 多轮迭代（116 用例，7 轮收敛 55.2%→100%）
  */
 
 const autoTestChapter = {
   /* ---------- 0. 命令总览 ---------- */
   overview: {
-    eyebrow: '/yxspec:sqt-auto-test · SYS.5 · 自动化测试 + 缺陷报告',
+    eyebrow: '/yxspec:sqt-auto-test · SYS.5/SUP.8 · 自动化测试 + 缺陷报告',
     oneLiner:
-      '跑 Behave 自动化测试（设备 profile 注入 + 多模式：标准/并行/长稳）→ 失败用例批量生成缺陷报告（defect-report skill）→ 修复→刷写→回归闭环。本工程多轮迭代：116 用例通过率 88%（99/116）→ 95%（110/116）。',
+      '跑 Behave 自动化测试（设备 profile 注入 + 多模式：标准/并行/长稳）→ 失败用例批量生成缺陷报告（defect-report skill）→ 修复→刷写→回归闭环。本工程多轮迭代 7 轮：R1 55.2% → R7 100%（116/116，124 台架 08-05）。',
     analogy:
-      '把 sqt-auto-test 想象成「机器阅卷 + 错题本」：答题卡（Behave 脚本）放进机器自动阅卷（behave 执行），出的每道错题（失败用例）自动生成错题档案（defect-report），错题本汇总成「试卷分析」（SQT-DR 缺陷闭环报告）交给开发改错，改完重考（修复→刷写→回归）看分数涨没涨。本工程从 88% 考到 95%。',
-    memoryLine: '记住：<Hl>auto-test = 机器阅卷 + 错题闭环</Hl>——116 用例通过率 88%→95%。',
+      '把 sqt-auto-test 想象成「机器阅卷 + 错题本」：答题卡（Behave 脚本）放进机器自动阅卷（behave 执行），出的每道错题（失败用例）自动生成错题档案（defect-report），错题本汇总成「试卷分析」（SQT-DR 缺陷闭环报告）交给开发改错，改完重考（修复→刷写→回归）看分数涨没涨。本工程 7 轮收敛：从 R1 的 55.2% 考到 R7 的 100%。',
+    memoryLine: '记住：<Hl>auto-test = 机器阅卷 + 错题闭环</Hl>——116 用例通过率 55.2%→100%。',
     purpose: {
       oneLiner:
         '6 步：Step 0 设备 profile 解析 + 环境变量注入 → Step 1 跑 behave（--parallel 并行 / --soak 长稳）→ Step 1.5 post-run 健康检查 → Step 2 失败用例调 defect-report skill 批量生成缺陷报告 → Step 3 自动提交 → Step 4 汇总输出；Step 5 可选：修复→远程刷写→回归闭环。',
@@ -23,7 +23,7 @@ const autoTestChapter = {
           'Behave feature 脚本（released/ 冻结产物）',
           '测试环境（MCP 服务端口 10000，9 服务）',
         ],
-        note: '本工程最新：IMEI 868471086584343，MCP Host 172.16.90.128',
+        note: '本工程最新：IMEI 868471086583428（R7 08-05_144916 轮），MCP Host 172.16.90.128',
       },
       processTitle: '6 步（含可选 Step 5）',
       process: [
@@ -40,8 +40,8 @@ const autoTestChapter = {
         { name: 'defect-reports/{imei}_{ts}/def-*/report.md', what: '失败用例结构化缺陷报告（批量）', consumer: 'sqt-defect-feedback 输入' },
       ],
       value: [
-        '116 用例多轮迭代：08-04 99 通过 → 08-05 105→106→110 通过（88%→95%）',
-        'BLE 缺陷从 08-03 133 个收敛到 6 个（修复→回归效果显著）',
+        '116 用例 7 轮迭代：R1 55.2% → R6 81.9%（08-04，21 DEF）→ R7 100%（08-05，116/116）',
+        'IF 接口域缺陷从 08-03 133 个收敛到 08-04 21 个 → 08-05 6 个（修复→回归效果显著）',
         '失败用例自动生成结构化缺陷报告——不手工写',
       ],
       boundary: [
@@ -50,14 +50,14 @@ const autoTestChapter = {
         'auto-test 只回答「脚本跑起来结果如何、失败怎么记」',
       ],
       example:
-        'BLE-008 参数化 @1.2：字段 acc_on expected=True actual=False → 自动生成 def-2026-0183 缺陷报告（协议/字段问题）。',
+        'IF 接口域 BLE-008 参数化 @1.2：字段 acc_on expected=True actual=False → 自动生成 def-2026-0183 缺陷报告（协议/字段问题）。',
     },
     rolesTitle: '谁在干活？（命令 / 设备 / 报告 skill）',
     roles: [
       { kind: 'blue', role: '测试执行队长', who: '/yxspec:sqt-auto-test 命令', does: 'profile 注入 → behave 执行 → 报告生成 → 提交' },
       { kind: 'cyan', role: 'behave', who: 'released/ 冻结 feature + step 库', does: 'BDD 脚本执行（参数化展开）' },
       { kind: 'amber', role: 'defect-report skill', who: '失败用例批量', does: '生成结构化缺陷报告（摘要/环境/复现/定位）' },
-      { kind: 'green', role: '设备', who: '真机（IMEI 868471086584343）', does: 'DUT 应答与上报（MQTT/BLE/SIF）' },
+      { kind: 'green', role: '设备', who: '真机（IMEI 868471086583428）', does: 'DUT 应答与上报（MQTT/BLE/SIF）' },
     ],
     whyTitle: '为什么要自动化测试？',
     whyShell: [
@@ -69,11 +69,11 @@ const autoTestChapter = {
     instance: {
       stats: [
         { num: '116', label: '总用例', desc: 'BLE/MQTT/SIF 协议域', kind: 'cyan' },
-        { num: '95%', label: '最新通过率', desc: '110/116（08-05 09:22）', kind: 'green' },
-        { num: '6', label: '最新失败', desc: '从 133 → 21 → 6 收敛', kind: 'amber' },
+        { num: '100%', label: '最新通过率', desc: '116/116（08-05，124 台架）', kind: 'green' },
+        { num: '0', label: '最新失败', desc: 'R7 116/116 全通过（缺陷 133→21→6→0 收敛）', kind: 'green' },
         { num: '8~12m', label: '单轮耗时', desc: '标准模式一轮', kind: 'cyan' },
       ],
-      memoryLine: '记住这 2 个数字：<Hl>116 用例、通过率 88%→95%</Hl>。答辩时说「自动化测试多轮迭代，通过率从 88% 爬到 95%」就是一句话结论。',
+      memoryLine: '记住这 2 个数字：<Hl>116 用例、通过率 55.2%→100%</Hl>。答辩时说「自动化测试 7 轮迭代，通过率从 R1 的 55.2% 收敛到 R7 的 100%」就是一句话结论。',
     },
     downstream: ['TEST_REPORT → 质量门', 'defect-reports → DR 闭环', '回归 → 修复验证'],
     downstreamLine: '一句话：<Hl>自动化测试是「机器阅卷」</Hl>——跑得快、记得准、可回归。',
@@ -91,7 +91,7 @@ const autoTestChapter = {
           sqt-defect-feedback 汇总成 SQT-DR 缺陷闭环报告（fix-group 分组 + CI 回归计划）→
           开发修复 → 远程刷写 → 回归重跑</b>。
           本工程证据：08-03 BLE 缺陷 133 个 → 08-04 收敛 21 个 → 08-05 最新 6 个，
-          通过率从 88%（99/116）爬到 <b>95%（110/116）</b>——多轮迭代数据是闭环效果的硬证据。
+          通过率从 R1 的 <b>55.2%</b> 收敛到 R7 的 <b>100%（116/116）</b>——多轮迭代数据是闭环效果的硬证据。
         </span>
       ),
     },
@@ -133,7 +133,7 @@ const autoTestChapter = {
       action: 'Step 3 自动提交 + Step 4 汇总输出；Step 5 可选：修复 → 远程刷写（TL OTA）→ 回归重跑',
       post: 'TEST_REPORT + 回归数据', edge: '闭环',
       why: '修复→刷写→回归，通过率爬升是证据',
-      badges: [{ kind: 'green', text: '88%→95%' }],
+      badges: [{ kind: 'green', text: '55.2%→100%' }],
     },
   ],
   flowNodes: [
@@ -141,7 +141,7 @@ const autoTestChapter = {
     { id: 1, name: 'behave 执行', icon: '🤖', color: 'cyan', sub: '116 用例' },
     { id: 2, name: '健康检查', icon: '🩺', color: 'cyan', sub: 'P2.3' },
     { id: 3, name: '缺陷报告', icon: '📋', color: 'amber', sub: '批量' },
-    { id: 4, name: '回归闭环', icon: '✅', color: 'green', sub: '88%→95%' },
+    { id: 4, name: '回归闭环', icon: '✅', color: 'green', sub: 'R7 100%' },
   ],
   flowTutor: {
     question: '考官问「behave 的三种执行模式分别什么时候用？」怎么答？',
@@ -172,7 +172,7 @@ const autoTestChapter = {
       {
         title: '命令级 · sqt-auto-test 与上下游的关系',
         color: 'cyan',
-        from: { id: 'at', cmd: '/yxspec:sqt-auto-test', sub: 'SYS.5 · 自动化测试', desc: '机器阅卷' },
+        from: { id: 'at', cmd: '/yxspec:sqt-auto-test', sub: 'SYS.5/SUP.8 · 自动化测试', desc: '机器阅卷' },
         tos: [
           { id: 'up-sg', cmd: 'sqt-script-gen', edge: 'feature 脚本', edgeDesc: '冻结产物', desc: '上游：脚本生成冻结后执行。' },
           { id: 'down-df', cmd: 'sqt-defect-feedback', edge: 'defect-reports', edgeDesc: 'DR 闭环输入', desc: '下游：缺陷报告汇总成 DR。' },
@@ -190,7 +190,7 @@ const autoTestChapter = {
     qualityGates: [
       { code: 'H', name: 'post-run 健康', phase: '执行', check: 'P2.3 环境健康（防误报）', outcome: '过' },
       { code: 'DEF', name: '失败必归档', phase: '执行', check: '每个失败用例生成缺陷报告', outcome: '6/6' },
-      { code: 'REG', name: '回归', phase: '收尾', check: '修复→刷写→重跑，通过率爬升', outcome: '95%' },
+      { code: 'REG', name: '回归', phase: '收尾', check: '修复→刷写→重跑，通过率爬升', outcome: '100%' },
     ],
     failures: [
       { fault: 'Service Discovery 未执行', action: 'BLE 前置鉴权失败 → 修复后回归（08-04 大量此类）' },
@@ -204,7 +204,7 @@ const autoTestChapter = {
       <span>
         「auto-test 跑 Behave 自动化测试：设备 profile 注入 → 116 用例执行（标准/并行/长稳三模式）→
         post-run 健康检查 → 失败用例批量生成结构化缺陷报告 → 自动提交。
-        <b>修复→远程刷写→回归闭环</b>：通过率从 88%（99/116）爬到 <b>95%（110/116）</b>，
+        <b>修复→远程刷写→回归闭环</b>：通过率从 R1 的 <b>55.2%</b> 收敛到 R7 的 <b>100%（116/116）</b>，
         失败用例从 133 收敛到 6——多轮迭代是闭环效果的硬证据。」
       </span>
     ),
@@ -213,7 +213,7 @@ const autoTestChapter = {
   /* ---------- 3. 产物实例 ---------- */
   artifactsSub: '产物文件都在工程里真实存在，答辩时可打开验证。',
   artifacts: [
-    { name: 'logs/2026-08-05_092238/TEST_REPORT.md', kind: 'green', what: '最新测试报告（110/116 通过）', who: '质量证据' },
+    { name: 'logs/2026-08-05_144916/TEST_REPORT.md', kind: 'green', what: '最新测试报告（116/116 通过，R7，08-05_144916 轮）', who: '质量证据' },
     { name: 'logs/index.json', kind: 'cyan', what: '多轮运行索引（08-03~08-05 全部 run）', who: '迭代追溯' },
     { name: 'defect-reports/{imei}_{ts}/def-*/report.md', kind: 'amber', what: '失败用例结构化缺陷报告', who: 'DR 闭环输入' },
     { name: 'released/Finsh_IF_V1.1/', kind: 'cyan', what: '冻结 feature + step 库（执行输入）', who: '可复跑' },
@@ -243,7 +243,7 @@ const autoTestChapter = {
 
   /* ---------- 4. 机制 ---------- */
   mechanisms: {
-    eyebrow: 'SYS.5 · 自动化测试',
+    eyebrow: 'SYS.5/SUP.8 · 自动化测试',
     title: '门控 · 追溯 · AI 协同（sqt-auto-test 版）',
     sub: '机器阅卷——失败即归档。',
     mechTableTitle: '机制总览',
@@ -273,8 +273,8 @@ const autoTestChapter = {
         type: 'ul',
         items: [
           '08-03：BLE 174 用例 41 通过（133 失败）——基线很差',
-          '08-04：116 用例 99 通过（88%）——修复后收敛',
-          '08-05：105 → 106 → 110 通过（95%）——持续爬升',
+          'R1 07-31：55.2% ——首轮基线',
+          'R7 08-05：116/116 全通过（124 台架）——21 DEF 闭环后收敛',
           '结论：修复→刷写→回归每轮都有量化进步',
         ],
         keyline: '「通过率爬升曲线」是自动化测试闭环效果的最硬证据。',

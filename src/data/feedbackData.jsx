@@ -51,7 +51,7 @@ const feedbackChapter = {
         '禁止状态：draft/accepted/fixing/rejected/deferred/converted_to_change',
       ],
       example:
-        'UF-20260729-001：review sqt_tr 发现 CHK-SQTR-025 OTA/CFG 域划分重叠（根因 TP §11.3 功能域映射表未单列 OTA）——fix 走向 A+B：补 TP 归属说明 + SQT-TR ota→cfg 合并（TR 20→26）→ verify 路径 B 产物判定 → closed。',
+        'UF-20260729-001：review sqt_tr 发现 CHK-SQTR-025 OTA/CFG 域划分重叠（初判根因 TP §11.3 未单列 OTA 域；复核更正：TP §11.3 本正确、OTA 归 CFG 是有意设计，真实缺陷为下游 SQT-TR 越权自铸独立 ota 文件、违反 C5 域表 1:1 对齐）——fix 走向 A+B：补 TP §11.3 OTA 归属澄清说明 + SQT-TR ota→cfg 合并（TR 20→26，删独立 ota 文件）→ verify 路径 B 产物判定：CHK-SQTR-025/028 两偏离项转 pass → closed。',
     },
     rolesTitle: '谁在干活？（命令 / 上游 / 脚本）',
     roles: [

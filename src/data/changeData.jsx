@@ -115,7 +115,7 @@ const changeChapter = {
       id: 2, name: '影响分析', label: 'Step 3 影响分析',
       action: '顺追溯链向下传播：列出直接影响产物 + 间接下游产物 + 评估影响范围',
       post: '影响清单', edge: '影响→stale',
-      why: '追溯链是影响传播的地图——CR→SR→SWR→DD→源码→测试',
+      why: '追溯链是影响传播的地图——CR→SR→SWR→SW-ARCH（57 模块）→IF 契约（19 份）→编码计划→源码→测试（SWE.3 详设已废弃，编码契约由编码计划承接）',
     },
     {
       id: 3, name: '标记 stale', label: 'Step 4 标记 stale',
@@ -275,7 +275,7 @@ const changeChapter = {
           { kind: 'cmd', label: 'CR-{YYYYMMDD}-{NNN}' },
           { kind: 'output', label: '[stale] SR-0008（上游 PRD 已变更）' },
           { kind: 'output', label: '[stale] SWR-FUN-0012' },
-          { kind: 'output', label: '[stale] DD-MOD003-0001' },
+          { kind: 'output', label: '[stale] SW-ARCH-MOD003（MOD-003 架构/编码契约——详设已废弃，编码契约由编码计划承接）' },
           { kind: 'output', label: '[stale] 源码 + UT 用例' },
           { kind: 'output', label: '影响范围：N 个产物需更新' },
         ],

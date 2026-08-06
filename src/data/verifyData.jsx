@@ -9,13 +9,13 @@ const verifyChapter = {
   overview: {
     eyebrow: '/yxspec:swe-coding-verify-v2 · SWE.4 · 设备级编码验证（真机）',
     oneLiner:
-      '把代码烧到真机（ML307C ARM）验证——发现并修复 4 个运行期缺陷（含打包链路根因），C4 握手 14/14 pass，G2 运行期业务全活，S1 稳定性通过，result=passed。',
+      '把代码烧到真机（ML307C ARM）验证——发现并修复 4 个运行期缺陷（BMS 解析 / alarm 洪泛 / SIF 保活 / GPS 灯），并定位打包链路根因（应用 bin 未入烧录包），C4 握手 14/14 pass，G2 运行期业务全活，S1 稳定性通过，result=passed。',
     analogy:
       '把 swe-coding-verify 想象成「整车路试」：PC 台架测过了，真车上路——先确认能打着火（G0 交叉编译 + 烧录），再上路跑（G2 运行期：GPS/报警/通信全活），逐车协议握手（C4 14/14），连续跑 12 分钟不熄火（S1）。路试暴露 4 个问题全修掉：BMS 报文没人解析、报警狂刷 4Hz、通信链路 60 秒误报断线、GPS 绿灯永远不亮——修完重烧再路试，passed。',
     memoryLine: '记住：<Hl>coding-verify = 真机路试</Hl>——4 缺陷闭环 + C4 14/14 + S1 稳定。',
     purpose: {
       oneLiner:
-        '真机（ML307C ARM）验证：G0 交叉编译 0 error + G1 启动 + G2 运行期（业务全活）+ C4 握手 14/14 + S1 稳定性；修复 4 个运行期缺陷（含打包链路根因）后 result=passed。',
+        '真机（ML307C ARM）验证：G0 交叉编译 0 error + G1 启动 + G2 运行期（业务全活）+ C4 握手 14/14 + S1 稳定性；修复 4 个运行期缺陷并定位打包链路根因（应用 bin 未入烧录包）后 result=passed。',
       input: {
         title: '4 类输入',
         items: [
@@ -138,18 +138,18 @@ const verifyChapter = {
       badges: [{ kind: 'green', text: '14/14' }],
     },
     {
-      id: 5, name: 'S1 看门狗', label: 'S1 稳定性',
-      action: '新固件 15:22:12 启动后持续运行 ≥12.5 分钟无复位/assert/崩溃（15:34:47 最新日志仍在输出）',
-      post: 'stable', edge: '稳定 → 结论',
-      why: '能跑还要能稳',
-      badges: [{ kind: 'green', text: '≥12.5m' }],
-    },
-    {
-      id: 6, name: '缺陷闭环', label: '4 缺陷修复闭环',
-      action: 'BMS 解析入口 / alarm 洪泛 4Hz→30s / SIF 保活 60s 误报 / GPS 绿灯熄灭——全部修复重编重烧真机日志验证',
-      post: '4 缺陷闭环 + passed', edge: '验证结论',
+      id: 5, name: '缺陷闭环', label: '4 缺陷修复闭环',
+      action: 'BMS 解析入口 / alarm 洪泛 4Hz→30s / SIF 保活 60s 误报 / GPS 绿灯熄灭——全部修复后重编、重烧、真机日志验证',
+      post: '4 缺陷闭环 + 重烧', edge: '修复后重烧',
       why: '缺陷必须真机验证闭环才算修好',
       badges: [{ kind: 'green', text: 'passed' }],
+    },
+    {
+      id: 6, name: 'S1 稳定', label: 'S1 稳定性（最终结论）',
+      action: '缺陷修复后的新固件 15:22:12 启动，持续运行 ≥12.5 分钟无复位/assert/崩溃（15:34:47 最新日志仍在输出）',
+      post: 'stable + result=passed', edge: '验证结论',
+      why: '能跑还要能稳——稳定性是设备级验证的最终收口',
+      badges: [{ kind: 'green', text: '≥12.5m' }],
     },
   ],
   flowNodes: [
@@ -158,8 +158,8 @@ const verifyChapter = {
     { id: 2, name: 'G1 启动', icon: '🚀', color: 'cyan', sub: 'fw main start' },
     { id: 3, name: 'G2 运行期', icon: '📡', color: 'cyan', sub: '业务全活' },
     { id: 4, name: 'C4 握手', icon: '🤝', color: 'cyan', sub: '14/14' },
-    { id: 5, name: 'S1 稳定', icon: '🛡️', color: 'cyan', sub: '12.5m+' },
-    { id: 6, name: '缺陷闭环', icon: '✅', color: 'green', sub: 'passed' },
+    { id: 5, name: '缺陷闭环', icon: '✅', color: 'green', sub: 'passed' },
+    { id: 6, name: 'S1 稳定', icon: '🛡️', color: 'cyan', sub: '12.5m+' },
   ],
   flowTutor: {
     question: '考官问「C4 握手 14 个模块怎么验？为什么两轮？」怎么答？',
@@ -243,7 +243,7 @@ const verifyChapter = {
     { name: 'yx_proto_sif.c 修复', kind: 'amber', what: 'BMS 帧分流补保活（防 60s 误报断线）', who: '缺陷 3 闭环' },
     { name: 'gnss_dsc_sync 修复', kind: 'amber', what: 'GPS 信号灯调用补全（绿灯复活）', who: '缺陷 4 闭环' },
   ],
-  artifactsChain: '一句话串起来：<Hl>编译 → 烧录 → 启动 → 业务 → 握手 → 稳定 → 4 缺陷闭环 → passed</Hl>。',
+  artifactsChain: '一句话串起来：<Hl>编译 → 烧录 → 启动 → 业务 → 握手 → 4 缺陷闭环 → 重烧 → S1 稳定 → passed</Hl>。',
   samplesTitle: '缺陷闭环真实样例（点开看字段）',
   samples: [
     {
@@ -262,6 +262,15 @@ const verifyChapter = {
         { k: '现象', v: 'GB_ALARM 上报 4Hz（应为 30s）+ alarmflag=0xFFFF 误报' },
         { k: '修复', v: 'gb_alarm_proc 节流 + GB_BMS_VAL_INVALID 门控 0xFFFF' },
         { k: '验证', v: '30s 周期稳定（15:23:12/42/15:24:12 间隔精确）' },
+      ],
+    },
+    {
+      id: '缺陷 3', badges: [{ kind: 'amber', text: 'MOD-003' }], meta: 'SIF 保活',
+      title: '通信链路 60 秒误报断线 → yx_proto_sif 补保活路径',
+      fields: [
+        { k: '现象', v: '通信链路每 60 秒误报断线，GPS/状态上报中断' },
+        { k: '根因', v: 'BMS 帧分流后保活路径被绕过，心跳无人维护' },
+        { k: '验证', v: '修复后链路保持在线，断线误报消除' },
       ],
     },
     {

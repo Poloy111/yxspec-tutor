@@ -150,11 +150,11 @@ const staticChapter = {
         from: { id: 'st', cmd: '/yxspec:swe-static-verify', sub: 'SUP.1 · 静态分析', desc: '代码体检' },
         tos: [
           { id: 'up-do', cmd: 'swe-coding-do', edge: '源码（19 模块）', edgeDesc: '扫描对象', desc: '上游：编码产物是扫描对象。' },
-          { id: 'down-coding-verify', cmd: '编码验证', edge: '扫描结论', edgeDesc: '质量门', desc: '下游：静态结论并入编码验证证据链。', dashed: true },
+          { id: 'peer-v', cmd: 'unit/IT/verify-pc', edge: '结论并入', edgeDesc: '四路并行', desc: '并行：编码后 static / unit / integration / verify-pc 四类验证并行开展、互不为前置；静态结论并入整体质量证据链，阶段一完成标志为 PC 验证（25/25，M1 合规）。', dashed: true },
         ],
       },
     ],
-    callKeyline: '静态分析是支撑过程（SUP.1）——为编码验证提供质量证据。',
+    callKeyline: '静态分析是支撑过程（SUP.1）——与单元/集成/PC 验证并行，为整体质量证据链提供静态质量证据。',
     pipeline: [
       { seg: 'cmd', label: '/yxspec:swe-static-verify' },
       { seg: 'input', label: 'app_src 全量' },

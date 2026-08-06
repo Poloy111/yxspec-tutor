@@ -39,7 +39,7 @@ const scriptGenChapter = {
       ],
       outputsTitle: '2 样',
       outputs: [
-        { name: 'features/*.feature', what: 'Behave 脚本（12 FUNC + IF + NFR 共 14 feature）', consumer: 'sqt-auto-test 执行' },
+        { name: 'features/*.feature', what: 'Behave 脚本（核心翻译 14 = 12 FUNC + IF + NFR；补 mqtt 冒烟/OTA 升级/soak 长稳 = 17 文件）', consumer: 'sqt-auto-test 执行' },
         { name: 'step_catalogue.yaml + gen_code_server', what: 'Step 目录 + 代码生成服务', consumer: '脚本维护 + 生成' },
       ],
       value: [
@@ -72,7 +72,7 @@ const scriptGenChapter = {
       stats: [
         { num: '544', label: 'TC 全翻译', desc: '428F + 36N + 80IF', kind: 'green' },
         { num: '362', label: 'step entries', desc: 'AUTOGEN 提取', kind: 'cyan' },
-        { num: '14', label: '个 feature', desc: '12 FUNC + IF + NFR', kind: 'cyan' },
+        { num: '17', label: '个 feature 文件', desc: '核心 14 + 补充 3（mqtt/OTA/soak）', kind: 'cyan' },
         { num: '6', label: 'release tag', desc: 'released/ 冻结', kind: 'amber' },
       ],
       memoryLine: '记住这 2 个数字：<Hl>544 TC 全翻译、362 step 目录</Hl>。答辩时说「用例全部翻译为 Behave 脚本」就是一句话结论。',
@@ -91,7 +91,7 @@ const scriptGenChapter = {
         <span>
           靠 <b>sync_tc.py 的 FD_TO_FEATURE 映射</b>：12 个 FUNC 功能域 + IF + NFR 一一映射到 feature 文件，
           每个 TC 按编号翻译为 Scenario Outline（Examples 参数化保留）。
-          本工程实测：<b>544 TC → 14 个 feature（12 FUNC + 1 IF + 1 NFR）</b>，
+          本工程实测：<b>544 TC → 14 个核心 feature（12 FUNC + 1 IF + 1 NFR）+ 3 补充（mqtt 冒烟/OTA 升级/soak 长稳）= 17 文件</b>，
           IF 域 84 个 Scenario Outline 覆盖 80 TC（含参数化扩展）。
           配合 step_catalogue 362 entries——翻译时按 step 目录匹配，不重复实现。
         </span>
@@ -168,7 +168,7 @@ const scriptGenChapter = {
     ],
     inputKeyline: '最关键输入是 <Hl>TC + step_capability</Hl>——翻译对象与复用目录。',
     outputs: [
-      { name: 'features/*.feature ×14', role: 'Behave 脚本（12 FUNC + IF + NFR）' },
+      { name: 'features/*.feature ×17', role: 'Behave 脚本（核心 14 + 补充 3）' },
       { name: 'step_catalogue.yaml', role: '362 entries step 目录' },
       { name: 'released/ 6 tag', role: 'release 冻结产物' },
     ],
@@ -187,7 +187,7 @@ const scriptGenChapter = {
       { seg: 'cmd', label: '/yxspec:sqt-script-gen' },
       { seg: 'input', label: '544 TC' },
       { seg: 'script', label: 'sync_tc.py' },
-      { seg: 'worker', label: '14 feature' },
+      { seg: 'worker', label: '17 feature' },
       { seg: 'output', label: '6 release' },
     ],
     qualityGates: [
@@ -206,7 +206,7 @@ const scriptGenChapter = {
     answer: (
       <span>
         「script-gen 把 544 TC 翻译为 Behave 脚本：sync_tc.py 按 FD_TO_FEATURE 映射翻译
-        <b>14 个 feature</b>（12 FUNC + IF 84 Scenario Outline + NFR），
+        <b>14 个核心 feature</b>（12 FUNC + IF 84 Scenario Outline + NFR）+ 3 补充（mqtt 冒烟/OTA 升级/soak 长稳）= 17 文件，
         extract_catalogue 提取 <b>362 step 目录</b>，gen_code_server（8020）提供 3 阶段 API，
         <b>6 个 release tag 冻结</b>定版——sqt-auto-test 可直接执行。」
       </span>
@@ -221,7 +221,7 @@ const scriptGenChapter = {
     { name: 'gen_code_server.py', kind: 'cyan', what: '3 阶段 API 服务（端口 8020）', who: '自动生成' },
     { name: 'released/ 6 tag', kind: 'cyan', what: 'release 冻结产物', who: '定版追溯' },
   ],
-  artifactsChain: '一句话串起来：<Hl>544 TC → sync_tc 翻译 → 14 feature + 362 step → 6 release 冻结</Hl>。',
+  artifactsChain: '一句话串起来：<Hl>544 TC → sync_tc 翻译 → 14 核心 + 3 补充 = 17 feature + 362 step → 6 release 冻结</Hl>。',
   samplesTitle: '真实翻译样例（点开看字段）',
   samples: [
     {

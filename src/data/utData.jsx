@@ -73,7 +73,7 @@ const utChapter = {
       memoryLine: '记住这 2 个数字：<Hl>16 模块 56 用例 100% PASS</Hl>。答辩时说「函数级全绿，3.17s 跑完」就是一句话结论。',
     },
     downstream: ['ts-ut → 测试证据', '56 PASS → 质量门', '框架 → 集成测试复用'],
-    downstreamLine: '一句话：<Hl>单元验证是「集成测试的零件质检」</Hl>——零件对了才谈组装。',
+    downstreamLine: '一句话：<Hl>单元验证与静态分析 / 集成验证 / PC 验证并行开展</Hl>——四类验证互为独立证据；集成测试复用本阶段搭建的 Unity+CMock 框架，但不以单元验证完成为前置。',
     ironRules: [
       '<b>4 项 Gate 先过</b> —— 源码/架构/框架/工具链',
       '<b>用例可复跑</b> —— 确定性测试',
@@ -160,7 +160,7 @@ const utChapter = {
         from: { id: 'ut', cmd: '/yxspec:swe-unit-verify', sub: 'SWE.4 · 单元验证', desc: '函数级质检' },
         tos: [
           { id: 'up-do', cmd: 'swe-coding-do', edge: '源码（19 模块）', edgeDesc: '被测对象', desc: '上游：编码产物。' },
-          { id: 'down-it', cmd: 'swe-integration-verify', edge: '框架复用 + 零件全绿', edgeDesc: '组装前提', desc: '下游：集成测试复用框架，零件全绿才组装。' },
+          { id: 'peer-it', cmd: 'swe-integration-verify', edge: '框架复用', edgeDesc: '四路并行', desc: '并行：编码后 static / unit / integration / verify-pc 四类验证并行开展、互为独立证据；本阶段搭建的 Unity+CMock 框架被集成测试复用，但集成验证不以单元验证完成为前置。' },
         ],
       },
     ],

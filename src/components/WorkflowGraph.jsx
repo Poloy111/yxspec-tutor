@@ -16,7 +16,7 @@ export default function WorkflowGraph() {
     const nodeW = 164, nodeH = 92;
     graphNodes.forEach((n) => g.setNode(n.id, { width: nodeW, height: nodeH }));
     graphEdges.forEach((e) => g.setEdge(e.from, e.to, e));
-
+    // 同一父节点的并行支（分叉点）标注并行提示
     dagre.layout(g);
 
     const nodes = graphNodes.map((n) => {
@@ -67,7 +67,7 @@ export default function WorkflowGraph() {
           <span className="legend-line solid" />实线 = 实际执行依赖
         </span>
         <span className="legend-item">
-          <span className="legend-line dashed" />虚线 = 支撑关系
+          <span className="legend-line dashed" />虚线 = 支撑 / 并行参考
         </span>
       </div>
 

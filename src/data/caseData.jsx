@@ -21,7 +21,7 @@ const caseChapter = {
         items: [
           'Gate 0：spec_id（trainees-2026）',
           'Gate 1：sqt-tp-*.md 存在',
-          'Gate 2：sqt-tr-func-*.md 存在（12 域 ×470 TR）',
+          'Gate 2：sqt-tr-func-*.md 存在（12 域 ×570 TR）',
           'Gate 3：sys-arch-*.md 存在',
           'Gate 4：review-sqt_strategy verdict=approved（双签）',
           'Gate 5：review-sqt_tr verdict=approved（双签）',
@@ -172,7 +172,7 @@ const caseChapter = {
   ioSub: '考核①明确要求：分析每个 Command 的输入、输出及调用关系。',
   io: {
     inputs: [
-      { name: 'SQT-TR', role: '三分法分组（FUNC 470 / NFR / IF）' },
+      { name: 'SQT-TR', role: '三分法分组（FUNC 570 / NFR 41 / IF 96，共 707 TR）' },
       { name: 'SYS-ARCH', role: '子系统/接口/状态机' },
       { name: 'SQT-TP', role: '§11.2 用例生成模型 + §6.3.8 oracle' },
       { name: 'step_capability.md', role: 'Step 能力清单（362 step）' },

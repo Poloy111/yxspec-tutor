@@ -30,7 +30,7 @@ const doChapter = {
         '① freeze：接口冻结（19 模块前序已冻结，skipped；0 新 stub）',
         '② spawn：滑窗 ≤5 spawn 编码 Worker 按计划施工（含 8/9/9.5 步：编码/自检/rebake）',
         '③ build：编译验证（本环境无 ARM 交叉工具链 → toolchain_error 零阻塞跳过，待下游补验）',
-        '④ 确认报告：输出 final-report，建议下一步 swe-static-verify',
+        '④ 确认报告：输出 final-report（12 done / 6 done_with_blocked / 1 blocked），建议下一步进入验证阶段——static/unit/integration/verify-pc 四类并行，PC 验证（verify-pc）为阶段一完成标志',
       ],
       outputsTitle: '3 样（代码入库 + 报告）',
       outputs: [
@@ -130,7 +130,7 @@ const doChapter = {
     },
     {
       id: 4, name: '确认报告', label: '确认报告（步骤 11.7）',
-      action: '输出 final-report：12 done / 6 done_with_blocked / 1 blocked；建议下一步 swe-static-verify（不自动执行）',
+      action: '输出 final-report：12 done / 6 done_with_blocked / 1 blocked；建议下一步 swe-coding-verify-pc-v2（PC 端编码验证，与 static/unit/IT 四路并行，不自动执行）',
       post: 'coding-do-final-report.md', edge: '报告 → 下游验证',
       why: '收尾留档，明确下一步',
       badges: [{ kind: 'green', text: '不自动执行' }],
@@ -179,7 +179,7 @@ const doChapter = {
         tos: [
           { id: 'up-plan', cmd: 'swe-coding-plan-v2', edge: 'coding-plan-mod-*.md', edgeDesc: '施工依据', desc: '上游：19 份编码计划是施工的唯一依据。' },
           { id: 'down-vpc', cmd: 'swe-coding-verify-pc', edge: '源码 + coding-result', edgeDesc: '验证输入', desc: '下游：PC 端验证按 19 模块逐组验证（G0/G1/S1/M1）。' },
-          { id: 'down-static', cmd: 'swe-static-verify', edge: '建议下一步', edgeDesc: '静态分析补验', desc: '下游：静态分析补验编译与代码质量。', dashed: true },
+          { id: 'down-v', cmd: 'static/unit/IT/verify-pc', edge: '四类并行', edgeDesc: '编码后验证', desc: '下游：编码后 static / unit / integration / verify-pc 四类验证并行开展，PC 验证（25/25，M1 合规）为阶段一完成标志。', dashed: true },
           { id: 'side-change', cmd: 'yxspec:change', edge: 'blocked 修正', edgeDesc: 'CR 变更', desc: '协作：blocked TASK 经变更流程修正归属（CR-20260730-006）。', dashed: true },
         ],
       },
@@ -236,7 +236,7 @@ const doChapter = {
     { name: 'coding-do-final-report.md', kind: 'green', what: '最终报告：12 done / 6 done_with_blocked / 1 blocked + 阻塞统计', who: '门控放行 + 证据链' },
     { name: 'build_result.json', kind: 'amber', what: '编译结果（toolchain_error exit_code=2，待补验）', who: '下游验证' },
     { name: 'blocked-resolution-report.md', kind: 'amber', what: '阻塞清单（26 TASK 归因：归属错配/未决议 U 编号）', who: 'change 流程' },
-    { name: 'coding-checkpoint-MOD-*.md', kind: 'amber', what: '模块检查点（8 个模块）', who: '中途状态记录' },
+    { name: 'coding-checkpoint-MOD-*.md', kind: 'amber', what: '模块检查点（9 个模块：MOD-001/002/004/008/011/015/017/024/035）', who: '中途状态记录' },
     { name: 'review-swe_coding-2026-001.md', kind: 'green', what: '阶段审查报告（signoff 双签）', who: '放行 + 追溯' },
   ],
   artifactsChain: '一句话串起来：<Hl>19 plan → freeze → 编码结果 ×19 → build（跳过）→ final-report → verify-pc + change</Hl>。',

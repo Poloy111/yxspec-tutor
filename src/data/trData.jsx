@@ -38,7 +38,7 @@ const trChapter = {
       ],
       outputsTitle: '2 样',
       outputs: [
-        { name: 'sqt-tr-{fd}-trainees-2026.md ×16', what: 'TR 文件（13 FUNC + 1 NFR + 2 IF）', consumer: '下游用例设计输入' },
+        { name: 'sqt-tr-{fd}-trainees-2026.md ×15', what: 'TR 文件（12 FUNC + 1 NFR + 2 IF）', consumer: '下游用例设计输入' },
         { name: 'task_sqt_tr_analysis.md', what: '任务台账（TR-001~007）', consumer: '门控 + 追溯' },
       ],
       value: [
@@ -69,8 +69,8 @@ const trChapter = {
     whyMemory: '记住 <Hl>「框架内拆 TR + 完备性门控」</Hl>——IF 完备性 100% 是硬指标。',
     instance: {
       stats: [
-        { num: '16', label: '个 TR 文件', desc: '13 FUNC + 1 NFR + 2 IF', kind: 'cyan' },
-        { num: '57+20', label: 'IF TR 数', desc: '全域 57 + mqtt 片段 20', kind: 'cyan' },
+        { num: '15', label: '个 TR 文件', desc: '12 FUNC + 1 NFR + 2 IF（OTA 并入 CFG）', kind: 'cyan' },
+        { num: '96', label: 'IF TR 数', desc: 'MQTT/BLE/SIF 协议域', kind: 'cyan' },
         { num: '100%', label: 'cmd_id 完备性', desc: 'MQTT 51/BLE 11/SIF 10', kind: 'green' },
         { num: '18m 37s', label: '转正耗时', desc: '14:45 → 15:03', kind: 'cyan' },
       ],
@@ -166,7 +166,7 @@ const trChapter = {
     ],
     inputKeyline: '最关键输入是 <Hl>TP 框架 + 协议 cmd_id 基线</Hl>——框架内取值 + 完备性分母。',
     outputs: [
-      { name: 'sqt-tr-*.md ×16', role: 'TR 文件（13 FUNC + 1 NFR + 2 IF）' },
+      { name: 'sqt-tr-*.md ×15', role: 'TR 文件（12 FUNC + 1 NFR + 2 IF）' },
       { name: 'task_sqt_tr_analysis.md', role: '任务台账' },
     ],
     callGraphs: [
@@ -215,9 +215,9 @@ const trChapter = {
   /* ---------- 3. 产物实例 ---------- */
   artifactsSub: '产物文件都在工程里真实存在，答辩时可打开验证。',
   artifacts: [
-    { name: 'sqt-tr-func-{fd}-trainees-2026.md ×13', kind: 'cyan', what: 'FUNC 域 TR（alm/base/ble/cfg/ctrl/daq/gps/led/ota/pwr/sec/sif/tsp）', who: '12 域 470 TR' },
-    { name: 'sqt-tr-nfr-trainees-2026.md', kind: 'amber', what: 'NFR TR（36 TR，8 子类齐全）', who: '量化拆解' },
-    { name: 'sqt-tr-if-*.md ×2', kind: 'green', what: 'IF TR（全域 57 + mqtt 片段 20）', who: 'cmd_id 完备性 100%' },
+    { name: 'sqt-tr-func-{fd}-trainees-2026.md ×12', kind: 'cyan', what: 'FUNC 域 TR（alm/base/ble/cfg/ctrl/daq/gps/led/pwr/sec/sif/tsp，OTA 并入 CFG）', who: '12 域 570 TR' },
+    { name: 'sqt-tr-nfr-trainees-2026.md', kind: 'amber', what: 'NFR TR（41 TR，8 子类齐全）', who: '量化拆解' },
+    { name: 'sqt-tr-if-*.md ×2', kind: 'green', what: 'IF TR（96 TR，cmd_id 基线 64）', who: 'cmd_id 完备性 100%' },
     { name: 'task_sqt_tr_analysis.md', kind: 'cyan', what: '任务台账（TR-001~007）', who: '门控 + 追溯' },
   ],
   artifactsChain: '一句话串起来：<Hl>TP 框架 → 三分法拆 TR → D1~D8 诊断 → 修复转正</Hl>。',

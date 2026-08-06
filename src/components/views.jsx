@@ -19,6 +19,11 @@ export function DirectoryView() {
           节点 = 命令，<b>连线 = 真实依赖关系</b>（实线=实际执行，虚线=支撑）。数据来自
           git log + task 会话 + specs 产物 + 评审汇报。点击节点高亮其上下游；各节点内部细节在对应章节查看。
         </div>
+        <Callout kind="cyan">
+          <b>并行关系怎么看？</b>① <Hl>系统架构后分叉</Hl>：硬件分析（HWE.1）与软件需求（SWE.1）两条支并行；
+          ② <Hl>编码后四路验证并行</Hl>：静态分析 / 单元验证 / 集成验证 / PC 验证；③ <Hl>治理环节贯穿全程</Hl>：
+          review / change / feedback 是支撑线，不占主链序。
+        </Callout>
       </div>
 
       <Card>
