@@ -106,20 +106,20 @@ const trChapter = {
     {
       id: 0, name: 'TR-001', label: '规划与门控（11m 52s）',
       action: 'Gate 4 项检查 + 加载 PRD 三源 + TP 框架消费 + 协议 cmd_id 基线（64）',
-      post: '四门控 PASS', edge: '输入就绪',
+      post: '四门控 PASS + 输入就绪（PRD/TP/协议基线）', edge: '输入就绪',
       why: '框架与基线是拆解的前提',
       badges: [{ kind: 'green', text: '4 Gate' }],
     },
     {
       id: 1, name: 'TR-002~004', label: '三分法拆解',
       action: 'IF 按协议逐 cmd_id（MQTT 扩展 20 条续接 + BLE + SIF）+ NFR 8 子类量化 + FUNC 12 域四层覆盖模型 G1~G9',
-      post: '16 个 TR 文件（DRAFT）', edge: '拆解完成',
+      post: '16 个 TR 文件（sqt-tr-func-*×12 + nfr + if×2，DRAFT）', edge: '拆解完成',
       why: 'IF 完备性 100% 是阻塞门控',
     },
     {
       id: 2, name: 'TR-005', label: '质量诊断（D1~D8）',
       action: '机械诊断：五要素/模糊词/编号/优先级/IF 完备性 + D6 离线缓存 Σ=5 + D8 生命周期 Σ=15 跨类别 rollup',
-      post: '0 阻塞缺陷', edge: '诊断结论',
+      post: 'D1~D8 诊断 0 阻塞缺陷', edge: '诊断结论',
       why: '车载强制项跨类别汇总判定',
       badges: [{ kind: 'amber', text: '0 阻塞' }],
     },

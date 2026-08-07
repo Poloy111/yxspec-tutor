@@ -108,13 +108,13 @@ const changeChapter = {
     {
       id: 1, name: '接收变更', label: 'Step 2 接收变更',
       action: '记录变更来源（客户需求变更/内部优化/缺陷修复）+ 变更内容描述 + 影响的产物 ID 或模块',
-      post: '变更描述落账', edge: '登记',
+      post: 'task_change.md（变更描述落账）', edge: '登记',
       why: '变更内容与范围先定性',
     },
     {
       id: 2, name: '影响分析', label: 'Step 3 影响分析',
       action: '顺追溯链向下传播：列出直接影响产物 + 间接下游产物 + 评估影响范围',
-      post: '影响清单', edge: '影响→stale',
+      post: '影响清单（直接 + 间接产物）', edge: '影响→stale',
       why: '追溯链是影响传播的地图——CR→SR→SWR→SW-ARCH（57 模块）→IF 契约（19 份）→编码计划→源码→测试（SWE.3 详设已废弃，编码契约由编码计划承接）',
     },
     {
@@ -132,7 +132,7 @@ const changeChapter = {
     {
       id: 5, name: '质量校验', label: 'Step 6 质量校验',
       action: '检查影响分析完整（直接+间接）/ 受影响条目均已 stale / 重新执行建议已生成',
-      post: '完成条件 6 项全过', edge: '闭环',
+      post: 'task_change.md（6 项完成条件全过）', edge: '闭环',
       why: '校验不通过不得视为完成',
       badges: [{ kind: 'green', text: '6 项完成条件' }],
     },

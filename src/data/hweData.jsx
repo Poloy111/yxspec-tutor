@@ -109,14 +109,14 @@ const hweChapter = {
     {
       id: 1, name: '加载输入', label: '加载输入（门控 + 需求）',
       action: '门控检查：sys-req 存在 + hw-*.md（H 类承载）+ review 放行；加载系统需求与硬件需求',
-      post: '输入加载完成', edge: 'SYS-H/M/IF 需求',
+      post: 'SYS-H/M/IF 需求清单（95 条）+ 门控 PASS', edge: 'SYS-H/M/IF 需求',
       why: '输入不齐不开工，先过门控',
       badges: [{ kind: 'amber', text: '门控' }],
     },
     {
       id: 2, name: '硬件分析', label: '硬件分析（12 章节逐项）',
       action: '按模板 12 章节逐项填入：选型（§4）/接口（§5）/功耗（§6）/EMC（§7）/散热（§8）/可靠性（§9）/安全（§10）',
-      post: '12 章节分析内容', edge: '七大维度分析',
+      post: '12 章节分析内容（§4~§10 七大维度）', edge: '七大维度分析',
       why: '硬件分析维度多，模板保证不漏',
       badges: [{ kind: 'cyan', text: '7 大维度' }],
     },
@@ -130,7 +130,7 @@ const hweChapter = {
     {
       id: 4, name: '质量校验', label: '质量校验（3 项）',
       action: '七大维度均有覆盖 + 编号连续无跳号 + 置信度 <0.90 标注 [NEEDS CLARIFICATION]',
-      post: '校验通过', edge: '规格书 → 阶段审查',
+      post: '质量校验 3 项 PASS（维度/编号/置信度）', edge: '规格书 → 阶段审查',
       why: '漏维度/跳号/臆造都是硬件大忌，三项必查',
       badges: [{ kind: 'green', text: 'review' }],
     },

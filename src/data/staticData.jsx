@@ -97,7 +97,7 @@ const staticChapter = {
     {
       id: 0, name: '配置', label: '配置（源码 + 规则 + 模式）',
       action: '确定源码目录（app_src 全量）+ 规则（error/warning/portability/style）+ 模式（fix / scan-only）',
-      post: '扫描配置就绪', edge: '配置 → 扫描',
+      post: '扫描配置就绪（源码目录 + 规则 + 模式）', edge: '配置 → 扫描',
       why: '扫哪里、查什么、修不修，先定清楚',
     },
     {
@@ -109,7 +109,7 @@ const staticChapter = {
     {
       id: 2, name: '判定', label: '判定（分级处理）',
       action: '真问题分类（error 11 / warn 12 / port 8）→ 本次改动 4 文件 0 缺陷；历史设计性问题 won\'t-fix 记档',
-      post: '判定结论 + index 更新', edge: '结论 → 门控',
+      post: 'static-verify-index.md（判定结论 + 索引更新）', edge: '结论 → 门控',
       why: '分级处理：能修的修，设计性的记档',
     },
   ],

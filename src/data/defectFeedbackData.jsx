@@ -101,7 +101,7 @@ const defectFeedbackChapter = {
     {
       id: 0, name: 'Gate', label: '门控检查（4 类输入）',
       action: '检查 defect-reports / sqt-tc / sqt-tp / sys-req 输入完整可读',
-      post: '输入就绪（文档计数写入元数据）', edge: '输入→生成',
+      post: '4 类输入就绪（文档计数写入元数据）', edge: '输入→生成',
       why: '输入不完整不生成报告',
       badges: [{ kind: 'green', text: '4 类输入' }],
     },
@@ -115,13 +115,13 @@ const defectFeedbackChapter = {
     {
       id: 2, name: 'Step 2', label: 'AI 审核 + 补充 + Validate',
       action: 'AI 复核分类口径（responsibility_class/next_action/target_root_cause 取值域）+ 路由判定序 + 证据完整性 → Validate 通过',
-      post: 'draft 报告', edge: '审核→评审',
+      post: 'sqt-dr-trainees-2026.md（draft 报告）', edge: '审核→评审',
       why: '机械生成 + AI 审核双保险',
     },
     {
       id: 3, name: '评审', label: 'review 评审（人工双签）',
       action: 'review-sqt_defect_feedback-*.md（本工程 002 号报告评审）→ 人工确认后放行修复',
-      post: 'approved', edge: '修复启动',
+      post: 'review-sqt_defect_feedback-*-SIGNOFF.md（approved 双签）', edge: '修复启动',
       why: '缺陷报告是修复依据，需人工确认',
       badges: [{ kind: 'green', text: '双签' }],
     },

@@ -117,7 +117,7 @@ const utChapter = {
     {
       id: 3, name: 'UT-004', label: '汇总规格 + 报告（12s）',
       action: 'ts-ut-2026-001.md 汇总规格 + task_sw_ut.md 更新',
-      post: '文件落盘', edge: '测试证据',
+      post: 'ts-ut-2026-001.md（文件落盘）', edge: '测试证据',
       why: '结论留档可追溯',
     },
   ],

@@ -112,13 +112,13 @@ const sysChapter = {
     {
       id: 1, name: 'gate-check', label: '门控检查',
       action: '校验 PRD 存在 + 无 blocking CLQ + binding 状态（缺失仅警告）',
-      post: 'passed=true', edge: '门控通过',
+      post: 'SYS-GATE done=true（门控通过）', edge: '门控通过',
       why: '上游 PRD 不在或还有 blocking，开工就是白干',
     },
     {
       id: 2, name: 'checkpoint + prepare', label: '断点 + 备料',
       action: '查任务文件判断续传；读配置、PRD、参考文档、CLQ 矩阵',
-      post: '输入清单就绪', edge: 'PRD + 参考文档',
+      post: '输入清单：PRD(373) + 参考文档 + CLQ 矩阵', edge: 'PRD + 参考文档',
       why: '跑一半能接着跑；先把输入备齐',
     },
     {

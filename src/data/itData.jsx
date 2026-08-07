@@ -102,7 +102,7 @@ const itChapter = {
     {
       id: 0, name: 'IT-001', label: '基础设施搭建（10m）',
       action: 'Fake DSC/msg + stub_modules + stub_it + CMakeLists（6 Gate 全过后）',
-      post: 'cmake configure 成功', edge: '框架就绪',
+      post: 'CMakeLists + Fake DSC 基础设施（cmake configure 成功）', edge: '框架就绪',
       why: '消息总线（DSC）用 Fake 模拟，模块才能独立组装',
     },
     {
@@ -114,13 +114,13 @@ const itChapter = {
     {
       id: 2, name: 'IT-003', label: '用例生成（10m）',
       action: '生成 11 个 test_it_l1_001~l3_002.c，四类用例：iface/sigflow/fault/e2e',
-      post: '11 个 .c 文件', edge: '测试代码',
+      post: 'test_it_l1_001.c ~ test_it_l3_002.c（11 个）', edge: '测试代码',
       why: '四类维度互补，覆盖接口/信号/故障/端到端',
     },
     {
       id: 3, name: 'IT-004', label: '编译运行 + 修复（10m 6s）',
       action: '3 轮修复：签名冲突 → Mock 去重 → DSC 容量；ctest -L integration',
-      post: '11/11 PASS（56 用例）', edge: '测试结论',
+      post: 'ts-it-2026-001.md（11/11 PASS，56 用例）', edge: '测试结论',
       why: '集成期问题（签名/Mock/容量）在测试中暴露修复',
       badges: [{ kind: 'amber', text: '3 轮修复' }],
     },

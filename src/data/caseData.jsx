@@ -110,14 +110,14 @@ const caseChapter = {
     {
       id: 0, name: '规划 + 加载', label: 'Step 1-4 规划 + 三源加载',
       action: 'task 文件 + --fresh 归档（13 旧 DRAFT 移入 .fresh-archive）+ Gate 6 项 + TR 三分法分组 + SYS-ARCH + TP+Step Capability',
-      post: '输入就绪 + 归档完成', edge: '输入→简报',
+      post: 'task_sqt_case_design.md + 输入就绪（TR 707 分组 + SYS-ARCH + TP）+ 归档完成', edge: '输入→简报',
       why: '--fresh 隔离旧产物，只据当前 TR 生成',
       badges: [{ kind: 'green', text: '6 Gate' }],
     },
     {
       id: 1, name: 'Briefing Pack', label: 'Step 5 生成 Briefing Pack',
       action: '12 域每域一份 brief（TR 切片 + 层级/武器/oracle 约束 + 观测映射行）',
-      post: '12 brief 生成', edge: '简报→派发',
+      post: '12 份 Briefing Pack（每域一份）', edge: '简报→派发',
       why: 'worker 自包含执行，不需回读命令文件',
     },
     {
@@ -130,13 +130,13 @@ const caseChapter = {
     {
       id: 3, name: '聚合', label: 'Step 8 主索引聚合 + 数据修正',
       action: '生成主汇总索引文件 + §3.4/§7 一致性数据修正',
-      post: '主索引 + 修正', edge: '聚合→门控',
+      post: '主汇总索引（sqt-tc-*-trainees-2026.md）+ 数据修正', edge: '聚合→门控',
       why: '分域文件汇总成册',
     },
     {
       id: 4, name: '覆盖率验证', label: 'Step 9 + 8.5 覆盖率 + 报文门控',
       action: '覆盖率 100%（12/12 域）+ 报文完整性确定性校验（Gherkin 结构/字段断言/silent-pass 兜底）',
-      post: '覆盖率 100% + 门控过', edge: '门控→完成',
+      post: '覆盖率 100% + 报文完整性门控 PASS', edge: '门控→完成',
       why: '漏域/漏报文即不合格',
       badges: [{ kind: 'green', text: '100%' }],
     },

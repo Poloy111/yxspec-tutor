@@ -121,13 +121,13 @@ const verifyChapter = {
     {
       id: 2, name: 'G1 启动', label: 'G1 真机启动',
       action: '打包修复后真机启动成功：fw main start 单次锚点 + 模块 init/start 日志齐备',
-      post: '启动成功', edge: '启动 → 运行期',
+      post: 'G1 启动成功（fw main start + init/start 日志）', edge: '启动 → 运行期',
       why: '应用入口烧入后，验证启动序列',
     },
     {
       id: 3, name: 'G2 运行期', label: 'G2 运行期业务',
       action: 'gnss（fix_state:3×320）/ alarm / comm_sif / m2m / odometer 持续运行，broker 持续上报 GPS/GB_ALARM',
-      post: '业务全活', edge: '运行期 → 握手',
+      post: 'G2 运行期业务全活（broker 持续上报）', edge: '运行期 → 握手',
       why: '业务模块全活，数据持续上报',
     },
     {

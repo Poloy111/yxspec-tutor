@@ -145,7 +145,7 @@ const pcChapter = {
     {
       id: 6, name: 'PCVP-FIXLOOP', label: 'fix loop（0 轮）',
       action: '编译/运行失败修复循环：G0/G1/S1 首轮全通过未触发；M1 失配根因判定 out_of_pc_scope（非 PC 兼容缺陷）不进 fix',
-      post: '0 轮触发', edge: '无需修复',
+      post: 'fix loop 0 轮触发（首轮全通过）', edge: '无需修复',
       why: '先判根因再决定是否修，避免瞎改',
     },
     {

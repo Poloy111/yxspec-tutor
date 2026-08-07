@@ -150,7 +150,7 @@ const strategyChapter = {
     {
       id: 6, name: '产物生成', label: 'Step 12 生成 SQT-TP',
       action: '按模板生成 sqt-tp-trainees-2026.md（单次 Write≤50 行，超出 Edit 追加）+ FD 短码三处一致性自检',
-      post: 'SQT-TP 文件', edge: '完成条件',
+      post: 'sqt-tp-trainees-2026.md（§1~§12 完整）', edge: '完成条件',
       why: '字段结构以模板为唯一权威',
       badges: [{ kind: 'green', text: '13 项自检' }],
     },

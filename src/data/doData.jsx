@@ -105,7 +105,7 @@ const doChapter = {
     {
       id: 0, name: '续跑检测', label: '续跑检测（产物存在性判定）',
       action: 'freeze_result.json 不存在 → 全新；存在且 INDEX 有候选 → 阶段 2 重入；候选清零无 build 报告 → 阶段 3 重入',
-      post: '重入点判定', edge: '定位续跑入口',
+      post: '重入点判定（依据 freeze_result.json / INDEX / build 报告）', edge: '定位续跑入口',
       why: '中断不丢工，按产物定位重入点',
     },
     {

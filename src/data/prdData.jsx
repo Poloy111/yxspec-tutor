@@ -113,7 +113,7 @@ const prdChapter = {
     {
       id: 1, name: 'gate-check', label: '门控检查',
       action: '校验上游前置：parse-summary 在不在、parsed/ 有没有文件、有没有 blocking CLQ',
-      post: 'passed=true 才继续', edge: '门控通过',
+      post: 'PRD-GATE done=true（门控通过）', edge: '门控通过',
       why: '上游缺东西就开工 = 白干，先检查再动手',
     },
     {

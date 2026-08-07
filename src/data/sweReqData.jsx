@@ -110,7 +110,7 @@ const sweReqChapter = {
     {
       id: 1, name: 'gate', label: '门控检查（确定性）',
       action: 'pipeline.py gate：PRD 存在 + parsed/raw 非空 + config 非空 + 无 blocking CLQ；pre-clarify 自动检测注入',
-      post: 'passed=true', edge: '门控通过',
+      post: 'SWE-GATE done=true（门控通过）', edge: '门控通过',
       why: '前置不齐，后面全部白跑',
     },
     {
@@ -134,7 +134,7 @@ const sweReqChapter = {
     {
       id: 5, name: 'shard-confirm', label: '分片确认（AI 决策点①：用户确认）',
       action: '展示分片摘要（17 域 373 条 PRD），Y 继续 / n 编辑配置重跑 / 调整用 AskUserQuestion',
-      post: '用户确认', edge: '确认分片',
+      post: '分片方案确认（17 域）', edge: '确认分片',
       why: '分片是成本决策，让用户拍板',
       badges: [{ kind: 'amber', text: '用户确认' }],
     },

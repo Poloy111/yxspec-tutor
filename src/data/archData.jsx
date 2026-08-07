@@ -110,19 +110,19 @@ const archChapter = {
     {
       id: 1, name: 'gate-check', label: '门控检查',
       action: 'scan_sys.py gate：SYS-REQ 存在 + review-sys_analysis 通过 + 无 blocking CLQ + binding 状态（缺失仅警告）',
-      post: 'passed=true', edge: '门控通过',
+      post: 'SYS-ARCH-GATE done=true（门控通过）', edge: '门控通过',
       why: '上游不在或未放行，开工就是白干',
     },
     {
       id: 2, name: 'checkpoint', label: '断点检查',
       action: '读任务文件：有未完成任务 → 询问续传；无 → 全新执行',
-      post: '断点决策', edge: '续传 or 新跑',
+      post: 'task_sys_arch.md（续传 or 新跑）', edge: '续传 or 新跑',
       why: '跑一半能接着跑，不重复劳动',
     },
     {
       id: 3, name: 'prepare', label: '备料',
       action: '读配置拿 spec_id；统计 SR 总数/分类；确认 CLQ Matrix、基线、Binding 文件',
-      post: '输入清单就绪', edge: 'SR + CLQ + 基线',
+      post: '输入清单：SR(374) + CLQ Matrix + 基线/Binding', edge: 'SR + CLQ + 基线',
       why: '先把输入备齐，Worker 开跑时不用等',
     },
     {
@@ -135,7 +135,7 @@ const archChapter = {
     {
       id: 5, name: 'user-confirm', label: '用户确认',
       action: '展示工作流概览：Worker ×1、输入 N 条 SR、CLQ 已回答/总数、Binding 状态、重试上限 ≤3 轮，等确认',
-      post: '用户确认', edge: '确认开工',
+      post: '工作流概览确认（含降级项 WARN）', edge: '确认开工',
       why: '开工前让用户看清输入与风险（含降级项）',
       badges: [{ kind: 'amber', text: '用户确认' }],
     },
@@ -149,21 +149,21 @@ const archChapter = {
     {
       id: 7, name: 'merge/verify', label: '判定 + 外置取证',
       action: '读质量门报告：GREEN→放行 / YELLOW→记录警告放行 / RED→回退修复 ≤3 轮；独立脚本核验 §7 分配一致性（不全信自报）',
-      post: '判定通过 + 取证无偏离', edge: '架构稿 → review',
+      post: '质量门结论（GREEN/YELLOW）+ 取证核验 §7 一致', edge: '架构稿 → review',
       why: '自报 + 外证双轨，防止 Worker 自我美化',
       badges: [{ kind: 'amber', text: '外置取证' }],
     },
     {
       id: 8, name: 'finalize', label: '收尾 + 提交',
       action: '更新任务台账（完成 + 统计摘要），git add + commit（submodule 走 submodule-aware-commit）',
-      post: 'done + commit', edge: '架构稿入库',
+      post: 'task_sys_arch.md（done）+ git commit', edge: '架构稿入库',
       why: '收尾留档，让下游知道可以开工',
       badges: [{ kind: 'green', text: 'git commit' }],
     },
     {
       id: 9, name: 'suggest-next', label: '建议下一步',
       action: '建议 review sys_arch 或 swe-analysis',
-      post: '建议输出', edge: 'SYS-ARCH → 审查 / 软件需求',
+      post: '建议输出：/yxspec:review sys_arch 或 swe-analysis', edge: 'SYS-ARCH → 审查 / 软件需求',
       why: '流程不自动跳下游，由审查关卡把关',
       badges: [{ kind: 'green', text: 'review' }],
     },

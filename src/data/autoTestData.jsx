@@ -105,20 +105,20 @@ const autoTestChapter = {
     {
       id: 0, name: 'Step 0', label: '设备 profile 解析 + 环境注入',
       action: '解析设备 profile（IMEI 868471086584343 / ProductKey YX_C25 / MCP Host 172.16.90.128）+ 环境变量注入',
-      post: '环境就绪', edge: '环境→执行',
+      post: '设备 profile 解析（IMEI/PK/Host）+ 环境注入就绪', edge: '环境→执行',
       why: '脚本与设备解耦，参数化注入',
       badges: [{ kind: 'green', text: '注入' }],
     },
     {
       id: 1, name: 'Step 1', label: '跑 behave（标准/并行/长稳）',
       action: '执行 released/ 冻结 feature（116 用例参数化展开）；--parallel 并行分支 / --soak 长稳分支',
-      post: 'behave 结果', edge: '执行→健康',
+      post: 'behave 结果（116 用例 PASS/FAIL）', edge: '执行→健康',
       why: '三种模式覆盖常规/提速/长稳',
     },
     {
       id: 2, name: 'Step 1.5', label: 'post-run 健康检查',
       action: 'P2.3 命令侧健康检查（环境是否正常，防止误报失败）',
-      post: '健康确认', edge: '健康→报告',
+      post: 'P2.3 健康确认（环境正常，无误报）', edge: '健康→报告',
       why: '环境故障与用例失败要区分',
     },
     {
