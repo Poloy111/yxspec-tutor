@@ -170,6 +170,7 @@ const utChapter = {
       { seg: 'script', label: '4 Gate' },
       { seg: 'worker', label: 'led 11 用例' },
       { seg: 'worker', label: '接口 45 用例' },
+      { seg: 'output', label: 'test_*.c ×16 + ts-ut-2026-001.md' },
       { seg: 'output', label: '56/56 PASS' },
     ],
     qualityGates: [

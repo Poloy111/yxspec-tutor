@@ -186,8 +186,10 @@ const changeChapter = {
       { seg: 'input', label: '变更请求' },
       { seg: 'script', label: '影响分析' },
       { seg: 'worker', label: '标记 stale' },
+      { seg: 'output', label: 'stale 清单' },
       { seg: 'worker', label: '生成 CR' },
-      { seg: 'output', label: 'CR + 建议' },
+      { seg: 'output', label: 'CR-{YYYYMMDD}-{NNN}.md' },
+      { seg: 'output', label: '重新执行建议' },
     ],
     qualityGates: [
       { code: 'Gate', name: '变更请求', phase: '前置', check: '用户明确提出（内容+原因）', outcome: '过' },

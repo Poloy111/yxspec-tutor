@@ -216,7 +216,8 @@ const strategyChapter = {
       { seg: 'script', label: '4 Gate' },
       { seg: 'worker', label: '范围/层级/方法' },
       { seg: 'worker', label: '环境/优先级/策略' },
-      { seg: 'output', label: 'SQT-TP' },
+      { seg: 'output', label: 'sqt-tp-trainees-2026.md' },
+      { seg: 'output', label: 'ble_to_mqtt_mapping.md + step_capability.md' },
     ],
     qualityGates: [
       { code: 'Gate', name: '4 项 Gate', phase: '前置', check: 'spec_id / PRD / SYS-ARCH / IF 协议源', outcome: '全 PASS' },

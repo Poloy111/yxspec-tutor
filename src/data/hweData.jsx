@@ -199,8 +199,8 @@ const hweChapter = {
       { seg: 'script', label: 'gate' },
       { seg: 'worker', label: '12 章节分析' },
       { seg: 'script', label: '质量校验' },
-      { seg: 'output', label: 'hw-analyse-*.md (56 HWA)' },
-      { seg: 'output', label: '→ review hwe_analysis' },
+      { seg: 'output', label: 'hw-analyse-2026-001.md (56 HWA)' },
+      { seg: 'output', label: 'review-hwe_analysis-2026-001.md (SIGNOFF)' },
     ],
     pipeKeyline: '蓝色=脚本 · 琥珀=Agent（AI）· 绿色=产物——门控 + 分析 + 校验一条链。',
     qualityGates: [

@@ -175,6 +175,7 @@ const itChapter = {
       { seg: 'script', label: '6 Gate' },
       { seg: 'worker', label: '分组 ×11' },
       { seg: 'worker', label: '用例 ×56' },
+      { seg: 'output', label: 'test_it_l*.c ×56 + ts-it-2026-001.md' },
       { seg: 'output', label: '11/11 PASS' },
     ],
     qualityGates: [

@@ -185,7 +185,8 @@ const autoTestChapter = {
       { seg: 'input', label: 'profile + feature' },
       { seg: 'worker', label: 'behave 116' },
       { seg: 'worker', label: 'defect ×N' },
-      { seg: 'output', label: 'TEST_REPORT' },
+      { seg: 'output', label: 'TEST_REPORT (R7 116/116)' },
+      { seg: 'output', label: 'sqt-dr-*/* 缺陷报告' },
     ],
     qualityGates: [
       { code: 'H', name: 'post-run 健康', phase: '执行', check: 'P2.3 环境健康（防误报）', outcome: '过' },

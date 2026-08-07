@@ -184,9 +184,12 @@ const trChapter = {
       { seg: 'cmd', label: '/yxspec:sqt-tr-analysis' },
       { seg: 'input', label: 'PRD + TP + 协议' },
       { seg: 'worker', label: 'FUNC ×12 域' },
+      { seg: 'output', label: 'sqt-tr-func-*.md ×12' },
       { seg: 'worker', label: 'NFR ×8 子类' },
+      { seg: 'output', label: 'sqt-tr-nfr-*.md' },
       { seg: 'worker', label: 'IF ×64 cmd' },
-      { seg: 'output', label: '16 TR 文件' },
+      { seg: 'output', label: 'sqt-tr-if-*.md ×2' },
+      { seg: 'output', label: '16 TR 文件 (707 TR)' },
     ],
     qualityGates: [
       { code: 'Gate', name: '4 项 Gate', phase: '前置', check: 'spec_id/PRD/协议源/TP 框架', outcome: '全 PASS' },

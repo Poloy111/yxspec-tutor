@@ -177,9 +177,11 @@ const feedbackChapter = {
       { seg: 'cmd', label: '/yxspec:feedback' },
       { seg: 'input', label: '候选 payload' },
       { seg: 'worker', label: 'create UF' },
+      { seg: 'output', label: 'UF-{YYYYMMDD}-{NNN}.md' },
       { seg: 'worker', label: 'fix scoped' },
+      { seg: 'output', label: 'fix.fixed_artifacts' },
       { seg: 'worker', label: 'verify 重跑' },
-      { seg: 'output', label: 'closed' },
+      { seg: 'output', label: 'closed (7/7)' },
     ],
     qualityGates: [
       { code: 'Gate', name: 'create Gate', phase: '前置', check: 'from/to/severity/issue-type + 证据 + why-not-local-fix', outcome: '过' },

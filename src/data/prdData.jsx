@@ -244,10 +244,11 @@ const prdChapter = {
       { seg: 'worker', label: 'Plan ×1' },
       { seg: 'worker', label: 'Extract ×7' },
       { seg: 'worker', label: 'Merge' },
+      { seg: 'output', label: 'prd-merged.md' },
       { seg: 'worker', label: 'Generate ×3' },
-      { seg: 'output', label: 'prd-*.md (373 条)' },
+      { seg: 'output', label: 'prd-trainees-2026.md (373 条)' },
       { seg: 'worker', label: 'Review' },
-      { seg: 'output', label: '审查报告 + 签署' },
+      { seg: 'output', label: 'review-report-prd + SIGNOFF' },
     ],
     pipeKeyline: '蓝色=脚本 · 琥珀=Worker（AI）· 绿色=产物——一眼看清「脚本门控 + AI 干活」的分工。',
     qualityGates: [

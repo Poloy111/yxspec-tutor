@@ -196,8 +196,9 @@ const planChapter = {
       { seg: 'script', label: 'gate prepare' },
       { seg: 'worker', label: 'prepare INDEX' },
       { seg: 'worker', label: 'spawn ≤5 ×19' },
+      { seg: 'output', label: 'coding-plan-mod-*.md ×19' },
       { seg: 'worker', label: 'resolve 决议' },
-      { seg: 'output', label: '19 plan + 决议' },
+      { seg: 'output', label: 'coding-plan-index.md + 决议记录' },
     ],
     pipeKeyline: '蓝色=脚本门禁 · 琥珀=skill/Worker · 绿色=产物——计划生成全链门禁把关。',
     qualityGates: [

@@ -236,8 +236,8 @@ const archChapter = {
       { seg: 'script', label: 'gate' },
       { seg: 'worker', label: 'Worker ×1 (§1~§8)' },
       { seg: 'script', label: '外置取证' },
-      { seg: 'output', label: 'sys-arch-*.md' },
-      { seg: 'output', label: '→ review sys_arch' },
+      { seg: 'output', label: 'sys-arch-trainees-2026.md (14 子系统)' },
+      { seg: 'output', label: 'review-sys_arch-2026-001.md (SIGNOFF)' },
     ],
     pipeKeyline: '蓝色=脚本 · 琥珀=Worker（AI）· 绿色=产物——脚本门控 + AI 全包 + 外证收口。',
     qualityGates: [

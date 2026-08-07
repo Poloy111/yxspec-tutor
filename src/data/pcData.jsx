@@ -226,7 +226,7 @@ const pcChapter = {
       { seg: 'worker', label: 'G1 启动' },
       { seg: 'worker', label: 'S1 看门狗' },
       { seg: 'worker', label: 'M1 协议 25 用例' },
-      { seg: 'output', label: 'report passed' },
+      { seg: 'output', label: 'coding-verify-pc-report.md (passed)' },
     ],
     pipeKeyline: '蓝色=脚本门控 · 琥珀=验证组 · 绿色=产物——「先门控后验证，G0→M1 依赖递进」。',
     qualityGates: [

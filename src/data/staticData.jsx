@@ -160,7 +160,7 @@ const staticChapter = {
       { seg: 'input', label: 'app_src 全量' },
       { seg: 'worker', label: 'Cppcheck 扫描' },
       { seg: 'script', label: 'MISRA 规则' },
-      { seg: 'output', label: 'analysis.xml' },
+      { seg: 'output', label: 'analysis.xml + misra_runtime.json' },
     ],
     qualityGates: [
       { code: 'error', name: '错误级', phase: '扫描', check: '内存/空指针/越界等（本次 11）', outcome: '本次改动 0' },

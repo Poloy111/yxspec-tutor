@@ -249,7 +249,8 @@ const sweReqChapter = {
       { seg: 'worker', label: 'Worker ×17' },
       { seg: 'script', label: 'merge' },
       { seg: 'script', label: 'verify V1~V35' },
-      { seg: 'output', label: 'sw-srs-*.md (420 SWR)' },
+      { seg: 'output', label: 'sw-srs-trainees-2026.md (420 SWR)' },
+      { seg: 'output', label: 'verify-trainees-2026.md (52 项)' },
     ],
     pipeKeyline: '蓝色=脚本（9 步）· 琥珀=Worker（AI 1 步）· 绿色=产物——「AI 只翻译，机器来把关」。',
     qualityGates: [

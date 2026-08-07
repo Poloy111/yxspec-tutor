@@ -176,7 +176,8 @@ const defectFeedbackChapter = {
       { seg: 'input', label: 'defect-reports' },
       { seg: 'script', label: 'SQT-DR 生成' },
       { seg: 'worker', label: 'AI 审核' },
-      { seg: 'output', label: 'DR + 回归计划' },
+      { seg: 'output', label: 'sqt-dr-trainees-2026.md' },
+      { seg: 'output', label: '回归计划 + 21 DEF verified' },
     ],
     qualityGates: [
       { code: 'Gate', name: '4 类输入', phase: '前置', check: 'defect-reports/TC/TP/SYS-REQ 可读', outcome: '过' },

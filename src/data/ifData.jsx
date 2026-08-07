@@ -202,9 +202,11 @@ const ifChapter = {
       { seg: 'worker', label: 'plan 分批 ≤5' },
       { seg: 'script', label: 'gate ifmod' },
       { seg: 'worker', label: 'IF-MOD ×19（模板化）' },
+      { seg: 'output', label: 'sw-if-*-if-mod-0*.md ×19' },
       { seg: 'worker', label: 'INDEX + types' },
+      { seg: 'output', label: 'sw-if-plan.json + sw-shared-types.md' },
       { seg: 'worker', label: 'registry' },
-      { seg: 'output', label: 'registry pass' },
+      { seg: 'output', label: 'sw-contract-registry-*.json pass' },
     ],
     pipeKeyline: '蓝色=脚本门禁 · 琥珀=skill/Worker · 绿色=产物——接口定义全链门禁把关。',
     qualityGates: [

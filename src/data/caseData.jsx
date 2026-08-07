@@ -199,6 +199,7 @@ const caseChapter = {
       { seg: 'input', label: 'TR + 架构 + TP' },
       { seg: 'worker', label: 'Briefing ×12' },
       { seg: 'worker', label: 'Worker ×12 域' },
+      { seg: 'output', label: 'sqt-tc-func-*.md ×12 + nfr ×8 + if ×1' },
       { seg: 'output', label: '544 TC + 索引' },
     ],
     qualityGates: [

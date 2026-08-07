@@ -231,9 +231,11 @@ const swArchChapter = {
       { seg: 'script', label: 'gate impl-judge' },
       { seg: 'worker', label: '精判' },
       { seg: 'worker', label: '冻结1 ❄' },
+      { seg: 'output', label: 'sw-arch-modules.json (57 模块)' },
       { seg: 'worker', label: '契约+冻结2 ❄' },
       { seg: 'worker', label: 'docgen' },
-      { seg: 'output', label: 'sw-arch-*.md' },
+      { seg: 'output', label: 'sw-arch-trainees-2026.md' },
+      { seg: 'output', label: 'sw-shared-types.md (96 类型)' },
     ],
     pipeKeyline: '蓝色=脚本门禁 · 琥珀=skill/Worker · 绿色=产物——「顺序靠脚本，地基靠人拍」。',
     qualityGates: [

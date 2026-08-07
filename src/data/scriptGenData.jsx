@@ -188,7 +188,9 @@ const scriptGenChapter = {
       { seg: 'input', label: '544 TC' },
       { seg: 'script', label: 'sync_tc.py' },
       { seg: 'worker', label: '17 feature' },
-      { seg: 'output', label: '6 release' },
+      { seg: 'output', label: 'features/fc_*.feature ×17' },
+      { seg: 'output', label: 'step_catalogue.yaml (362)' },
+      { seg: 'output', label: '6 release tag' },
     ],
     qualityGates: [
       { code: 'Gate', name: '4 项 Gate', phase: '前置', check: 'TC 齐全/step 存在/引擎就绪/MCP 配置', outcome: '全 PASS' },

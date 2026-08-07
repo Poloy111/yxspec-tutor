@@ -207,7 +207,8 @@ const verifyChapter = {
       { seg: 'worker', label: 'G1/G2 真机' },
       { seg: 'worker', label: 'C4 握手 14' },
       { seg: 'worker', label: 'S1 稳定' },
-      { seg: 'output', label: 'passed + 4 缺陷闭环' },
+      { seg: 'output', label: 'coding-verify-report.md (passed)' },
+      { seg: 'output', label: '4 缺陷闭环' },
     ],
     qualityGates: [
       { code: 'G0', name: '编译', phase: '前置', check: 'ARM 交叉编译整包 0 error', outcome: 'pass' },

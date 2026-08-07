@@ -188,9 +188,10 @@ const reviewChapter = {
       { seg: 'cmd', label: '/yxspec:review' },
       { seg: 'input', label: '规格 + 检查单' },
       { seg: 'script', label: '阶段 A 逐项' },
-      { seg: 'worker', label: 'SIGNOFF' },
+      { seg: 'worker', label: 'REVIEW + SIGNOFF' },
+      { seg: 'output', label: 'REVIEW-{STAGE}-{YYYY}-{NNN}.md' },
       { seg: 'worker', label: '阶段 B 校验' },
-      { seg: 'output', label: 'FINAL_VERDICT' },
+      { seg: 'output', label: 'FINAL_VERDICT (approved)' },
     ],
     qualityGates: [
       { code: 'Gate', name: '3 项 Gate', phase: '前置', check: '产物存在 / 检查单存在 / task 已完成', outcome: '全过' },

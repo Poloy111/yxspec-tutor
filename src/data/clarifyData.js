@@ -225,13 +225,14 @@ export const clarifyIo = {
     { seg: 'script', label: 'ingest' },
     { seg: 'script', label: 'priority' },
     { seg: 'script', label: 'gen-template' },
-    { seg: 'output', label: '6 张答题卡' },
+    { seg: 'output', label: 'batches/clq-batch-*.md ×6' },
     { seg: 'stop', label: '⏸ 停下等人填' },
     { seg: 'script', label: 'import-answers' },
     { seg: 'script', label: 'apply-back' },
     { seg: 'script', label: 'export-decisions' },
+    { seg: 'output', label: 'clq_index.json + answered-decisions.md' },
     { seg: 'script', label: 'gen-log' },
-    { seg: 'output', label: 'clq_index.json + 决策清单' },
+    { seg: 'output', label: 'clq-index.md' },
   ],
   components: {
     scripts: [
